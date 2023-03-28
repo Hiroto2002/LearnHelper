@@ -1,8 +1,11 @@
-export default function Home() {
+import { NextPage } from "next";
+
+const login:NextPage=()=> {
   return (
     <>
-      <div>bb</div>
-      <div>aa</div>
+    <></>
     </>
   );
 }
+
+export default login;
