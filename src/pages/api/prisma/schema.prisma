@@ -16,6 +16,40 @@ model User {
   email  String @unique
   password String
   createdAt DateTime @default(now())
+  posts Post[]
+  techs Tech[]
 }
+
+model Post {
+  id        Int      @id @default(autoincrement())
+  title     String
+  priority  Int
+  content   String
+  getContent String
+  createdAt DateTime @default(now())
+  author    User     @relation(fields: [authorId], references: [id])
+  authorId  Int
+  techs Tech[] 
+  NeedCotents NeedCotents[]
+}
+model Tech {
+  id        Int      @id @default(autoincrement())
+  title      String
+  priority  Int
+  whyWant   String
+  createdAt DateTime @default(now())
+  author    User     @relation(fields: [authorId], references: [id])
+  authorId  Int
+  posts Post[] 
+}
+
+model NeedCotents {
+  id        Int      @id @default(autoincrement())
+  title      String
+  author Post @relation(fields: [authorId], references: [id])
+  authorId  Int
+  createdAt DateTime @default(now())
+}
+
 // マイグレーション:データベースへ変更を記録する
 //npx prisma migrate dev 

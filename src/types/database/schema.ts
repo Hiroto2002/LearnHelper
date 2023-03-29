@@ -34,178 +34,56 @@ export interface Database {
   }
   public: {
     Tables: {
-      addresses: {
+      _prisma_migrations: {
         Row: {
-          address_id: string
-          latitude: number
-          longitude: number
-          post_id: string
+          applied_steps_count: number
+          checksum: string
+          finished_at: string | null
+          id: string
+          logs: string | null
+          migration_name: string
+          rolled_back_at: string | null
+          started_at: string
         }
         Insert: {
-          address_id: string
-          latitude: number
-          longitude: number
-          post_id: string
+          applied_steps_count?: number
+          checksum: string
+          finished_at?: string | null
+          id: string
+          logs?: string | null
+          migration_name: string
+          rolled_back_at?: string | null
+          started_at?: string
         }
         Update: {
-          address_id?: string
-          latitude?: number
-          longitude?: number
-          post_id?: string
+          applied_steps_count?: number
+          checksum?: string
+          finished_at?: string | null
+          id?: string
+          logs?: string | null
+          migration_name?: string
+          rolled_back_at?: string | null
+          started_at?: string
         }
       }
-      dislike_posts: {
+      User: {
         Row: {
-          disliked_at: string | null
-          post_id: string
-          user_id: string
-        }
-        Insert: {
-          disliked_at?: string | null
-          post_id: string
-          user_id: string
-        }
-        Update: {
-          disliked_at?: string | null
-          post_id?: string
-          user_id?: string
-        }
-      }
-      image_tags: {
-        Row: {
-          name: string
-          post_image_id: string
-          tag_id: string
-        }
-        Insert: {
-          name: string
-          post_image_id: string
-          tag_id: string
-        }
-        Update: {
-          name?: string
-          post_image_id?: string
-          tag_id?: string
-        }
-      }
-      like_posts: {
-        Row: {
-          liked_at: string | null
-          post_id: string
-          user_id: string
-        }
-        Insert: {
-          liked_at?: string | null
-          post_id: string
-          user_id: string
-        }
-        Update: {
-          liked_at?: string | null
-          post_id?: string
-          user_id?: string
-        }
-      }
-      post_images: {
-        Row: {
-          image_path: string
-          post_id: string
-          post_image_id: string
-        }
-        Insert: {
-          image_path: string
-          post_id: string
-          post_image_id: string
-        }
-        Update: {
-          image_path?: string
-          post_id?: string
-          post_image_id?: string
-        }
-      }
-      posts: {
-        Row: {
-          comment: string | null
-          created_at: string
-          post_id: string
-          posted_at: string
-          title: string
-          updated_at: string
-          user_id: string
-        }
-        Insert: {
-          comment?: string | null
-          created_at?: string
-          post_id: string
-          posted_at?: string
-          title: string
-          updated_at?: string
-          user_id: string
-        }
-        Update: {
-          comment?: string | null
-          created_at?: string
-          post_id?: string
-          posted_at?: string
-          title?: string
-          updated_at?: string
-          user_id?: string
-        }
-      }
-      snap_routes: {
-        Row: {
-          created_at: string | null
-          snap_route_id: string
-          title: string
-          user_id: string
-        }
-        Insert: {
-          created_at?: string | null
-          snap_route_id: string
-          title: string
-          user_id: string
-        }
-        Update: {
-          created_at?: string | null
-          snap_route_id?: string
-          title?: string
-          user_id?: string
-        }
-      }
-      snap_routes_posts: {
-        Row: {
-          post_id: string
-          snap_route_id: string
-        }
-        Insert: {
-          post_id: string
-          snap_route_id: string
-        }
-        Update: {
-          post_id?: string
-          snap_route_id?: string
-        }
-      }
-      users: {
-        Row: {
+          createdAt: string
           email: string
-          name: string
-          registered_at: string
-          updated_at: string
-          user_id: string
+          id: number
+          password: string
         }
         Insert: {
+          createdAt?: string
           email: string
-          name: string
-          registered_at?: string
-          updated_at?: string
-          user_id: string
+          id?: number
+          password: string
         }
         Update: {
+          createdAt?: string
           email?: string
-          name?: string
-          registered_at?: string
-          updated_at?: string
-          user_id?: string
+          id?: number
+          password?: string
         }
       }
     }
