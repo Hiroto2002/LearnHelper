@@ -1,16 +1,16 @@
 import { authUserRepository } from '@/features/user/auth/AuthUser'
-import { AuthChangeEvent, Session } from '@supabase/supabase-js'
-import { useEffect } from 'react'
-import { supabase } from '@/supabase'
-import { useRouter } from 'next/router'
+// import { AuthChangeEvent, Session } from '@supabase/supabase-js'
+// import { useEffect } from 'react'
+// import { supabase } from '@/supabase'
+// import { useRouter } from 'next/router'
 
 export const useAuth = () => {
   const signOut = async () => {
-    authUserRepository.signOut()
+   await authUserRepository.signOut()
   }
 
   const signIn = async () => {
-    authUserRepository.signIn()
+    await authUserRepository.signIn()
   }
 
   return {

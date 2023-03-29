@@ -10,10 +10,10 @@ class AuthUserRepositoryImpl implements AuthUserRepository {
   private readonly redirectTo: string =
     (process.env.NEXT_PUBLIC_SITE_URL as string) + this.redirectPath
   public signOut = async () => {
-    await supabase.auth.signOut()
+     await supabase.auth.signOut()
   }
   public signIn = async () => {
-    await supabase.auth.signInWithOAuth({
+     await supabase.auth.signInWithOAuth({
       provider: this.authProvider,
       options: {
         redirectTo: this.redirectTo,
