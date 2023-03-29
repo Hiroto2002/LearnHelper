@@ -1,31 +1,39 @@
 {
   "root": true,
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "project": "./tsconfig.json"
+    "sourceType": "module",
+    "ecmaVersion": 2020,
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "project": "./tsconfig.eslint.json"
   },
+  "plugins": ["react", "@typescript-eslint"],
   "extends": [
-    "next/core-web-vitals",
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking",
-   "prettier"
-  ],
-  "plugins": [
-    "@typescript-eslint",
-    "import",
-    "unused-imports"
+    "plugin:react/recommended",
+    "prettier"
   ],
   "rules": {
-    "no-console": "warn",
-    "no-var": "error",
-    "sort-imports": 0,
-    "no-unused-vars": "warn",
-    "unused-imports/no-unused-imports": "error",
-    "unused-imports/no-unused-vars": [
-      "warn",
-      { "vars": "all", "varsIgnorePattern": "^_", "args": "after-used", "argsIgnorePattern": "^_" }
-    ]
+    "@typescript-eslint/explicit-function-return-type": 0,
+    "@typescript-eslint/no-explicit-any": 0,
+    "@typescript-eslint/no-empty-function": 0,
+    "react/prop-types": 0,
+    "react/react-in-jsx-scope": 0,
+    "no-empty-function": 0,
+    "@typescript-eslint/ban-ts-comment": 0
   }
 }
