@@ -2,10 +2,11 @@ import { BottomNav } from '@/components/layouts/bottomNav/BottomNav';
 import { useCustomRouter } from '@/hooks/useCustomRouter';
 import { useModal } from '@/hooks/useModal';
 import { Styles } from '@/types/styles';
+import { NextPage } from 'next';
 import React from 'react';
 import * as Post from '../../features/home/components/index';
 
-const home = () => {
+const home:NextPage = () => {
   const { handlePushRouter, isActive } = useCustomRouter();
   const { isOpen, handleOpen, handleClose } = useModal();
   return (
