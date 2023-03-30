@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 import React from "react";
 
-const signup:NextPage = () => {
+const Signup:NextPage = () => {
   return <div>index</div>;
 };
-export default signup;
+export default Signup;

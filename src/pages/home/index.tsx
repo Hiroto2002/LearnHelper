@@ -6,7 +6,7 @@ import { NextPage } from 'next';
 import React from 'react';
 import * as Post from '../../features/home/components/index';
 
-const home:NextPage = () => {
+const Home:NextPage = () => {
   const { handlePushRouter, isActive } = useCustomRouter();
   const { isOpen, handleOpen, handleClose } = useModal();
   return (
@@ -24,4 +24,4 @@ const styles: Styles = {
     width: '100vw',
   },
 };
-export default home;
+export default Home;

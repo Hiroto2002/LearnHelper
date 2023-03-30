@@ -2,7 +2,7 @@ import { useCustomRouter } from "@/hooks/useCustomRouter";
 import { NextPage } from "next";
 import { useEffect } from "react";
 
-const login:NextPage=()=> {
+const Login:NextPage=()=> {
   const {handlePushRouter} = useCustomRouter()
   useEffect(()=>{
     handlePushRouter('/home')
@@ -14,4 +14,4 @@ const login:NextPage=()=> {
   );
 }
 
-export default login;
+export default Login;
