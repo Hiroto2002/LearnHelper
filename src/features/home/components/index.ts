@@ -1,5 +1,3 @@
-import { PostList } from "./postlist";
-
-export{
-    PostList
-}
+import { PostButton } from './PostButton';
+import { PostModal } from './PostModal';
+export { PostButton, PostModal };

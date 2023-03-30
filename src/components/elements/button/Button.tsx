@@ -4,6 +4,7 @@ type Button = {
   children: ReactNode
 } & ComponentProps<'button'>
 
-export const Button = ({ children,...props}: Button) => {
-  return <button {...props} >{children}</button>
+export const Button = ( props: Button) => {
+  const {children,...buttonProps} = props
+  return <button {...buttonProps} >{children}</button>
 }

@@ -1,11 +1,25 @@
 {
   "root": true,
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 2020,
+    "ecmaFeatures": {
+      "jsx": true
+    },
     "project": "./tsconfig.json"
   },
   "extends": [
-    "next/core-web-vitals",
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
@@ -13,19 +27,12 @@
    "prettier"
   ],
   "plugins": [
-    "@typescript-eslint",
-    "import",
-    "unused-imports"
+    "@typescript-eslint"
   ],
   "rules": {
     "no-console": "warn",
-    "no-var": "error",
     "sort-imports": 0,
     "no-unused-vars": "warn",
-    "unused-imports/no-unused-imports": "error",
-    "unused-imports/no-unused-vars": [
-      "warn",
-      { "vars": "all", "varsIgnorePattern": "^_", "args": "after-used", "argsIgnorePattern": "^_" }
-    ]
+      "@typescript-eslint/no-floating-promises": "off"
   }
 }
