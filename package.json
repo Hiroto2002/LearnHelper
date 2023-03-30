@@ -39,6 +39,6 @@
     "prettier": "^2.8.7"
   },
   "prisma": {
-    "schema": "./src/pages/api/prisma/schema.prisma"
+    "schema": "./prisma/schema.prisma"
   }
 }
