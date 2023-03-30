@@ -10,7 +10,6 @@ const home = () => {
   const { isOpen, handleOpen, handleClose } = useModal();
   return (
     <div style={styles.container}>
-      {/* <Post.PostList></Post.PostList> */}
       <Post.PostButton handleOpen={handleOpen} />
       <BottomNav handlePushRouter={handlePushRouter} isActive={isActive} />
       {isOpen && <Post.PostModal handleClose={handleClose}></Post.PostModal>}
