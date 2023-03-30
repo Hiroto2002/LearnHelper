@@ -1,6 +1,5 @@
 import React from 'react';
 
-const PostList = () => {
+export const PostList = () => {
   return <div>PostList</div>;
 };
-export default PostList;
