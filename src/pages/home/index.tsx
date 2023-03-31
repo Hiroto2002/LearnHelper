@@ -20,7 +20,7 @@ const Home: NextPage = () => {
     // mode:初回のバリデーションを行うタイミング
     mode: 'onSubmit',
   });
-  const onSubmit: SubmitHandler<PostInput> = (data) => {
+  const onSubmit: SubmitHandler<PostInput> = (data):void => {
     console.log(data);
     reset();
   };
