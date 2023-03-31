@@ -1,3 +1,3 @@
-import { PostButton } from './PostButton';
+import { PostToggleButton } from './PostToggleButton';
 import { PostModal } from './PostModal';
-export { PostButton, PostModal };
+export { PostToggleButton, PostModal };

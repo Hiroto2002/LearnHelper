@@ -1,20 +1,21 @@
+import { PostInput } from '@/features/home/types/PostInput';
 import { type } from 'os';
-import React from 'react';
+import React, { BaseSyntheticEvent } from 'react';
+import { SubmitHandler } from 'react-hook-form';
 import { Text } from '../text/Text';
 
 type Props = {
   children: React.ReactNode;
   label?: string;
-} & React.FormHTMLAttributes<HTMLFormElement>;
+  onSubmit: (e?: BaseSyntheticEvent<object, any, any> | undefined) => Promise<void>;
+};
 
 export const Form = (props: Props) => {
-  const { children, label, ...formProps } = props;
+  const { children, label, onSubmit } = props;
   return (
-    <>
-      <form {...formProps}>
+    <form onSubmit={onSubmit}>
       <Text>{label}</Text>
-        {children}
-        </form>
-    </>
+      {children}
+    </form>
   );
 };
