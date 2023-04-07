@@ -30,11 +30,11 @@ model Post {
   author    User     @relation(fields: [authorId], references: [id])
   authorId  Int
   techs Tech[] 
-  NeedCotents NeedCotents[]
+  needContents NeedContent[]
 }
 model Tech {
   id        Int      @id @default(autoincrement())
-  title      String
+  title     String
   priority  Int
   whyWant   String
   createdAt DateTime @default(now())
@@ -43,7 +43,7 @@ model Tech {
   posts Post[] 
 }
 
-model NeedCotents {
+model NeedContent {
   id        Int      @id @default(autoincrement())
   title      String
   author Post @relation(fields: [authorId], references: [id])

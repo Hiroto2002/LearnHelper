@@ -1,7 +1,9 @@
 import { BottomNav } from '@/components/layouts/bottomNav/BottomNav';
-import { PostInput } from '@/features/home/types/PostInput';
+import { useSavePost } from '@/features/home/hooks/useSavePost';
+import { PostInput } from '@/features/home/types/Post';
 import { useCustomRouter } from '@/hooks/useCustomRouter';
 import { useModal } from '@/hooks/useModal';
+import { prisma } from '@/lib/prisma';
 import { Styles } from '@/types/styles';
 import { NextPage } from 'next';
 import React, { useRef } from 'react';
@@ -20,8 +22,10 @@ const Home: NextPage = () => {
     // mode:初回のバリデーションを行うタイミング
     mode: 'onSubmit',
   });
-  const onSubmit: SubmitHandler<PostInput> = (data) => {
-    console.log(data);
+  const { save } = useSavePost();
+  const onSubmit: SubmitHandler<PostInput> = async (data) => {
+    const postData = { ...data, authorId: 1 };
+    await save(postData);
     reset();
   };
 
