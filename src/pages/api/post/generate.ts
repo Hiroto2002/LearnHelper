@@ -24,7 +24,7 @@ const createPost = async (req: NextApiRequest, res: NextApiResponse) => {
           connect: techs.map((techId) => ({ id: Number(techId) })),
         },
         // 一緒に作成する
-        needContents: {
+        needContent: {
           create: [{ title: needContent }],
         },
       },

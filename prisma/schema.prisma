@@ -30,7 +30,7 @@ model Post {
   author    User     @relation(fields: [authorId], references: [id])
   authorId  Int
   techs Tech[] 
-  needContents NeedContent[]
+  needContent NeedContent[]
 }
 model Tech {
   id        Int      @id @default(autoincrement())
