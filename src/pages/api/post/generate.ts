@@ -1,9 +1,10 @@
-import { Post } from '@/features/home/types/Post';
 import { prisma } from '@/lib/prisma';
+import { Post } from '@prisma/client';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 const createPost = async (req: NextApiRequest, res: NextApiResponse) => {
-  const { title, content, getContent, needContent, priority, techs, authorId } = req.body as Post;
+  const { title, content, getContent, priority, authorId } = req.body as Post;
+  const {needContent,techs} = req.body ;
   // const { id } = req.user;
   // return;
   try {
@@ -21,7 +22,7 @@ const createPost = async (req: NextApiRequest, res: NextApiResponse) => {
         },
         // 多対多の関係を作成する
         techs: {
-          connect: techs.map((techId) => ({ id: Number(techId) })),
+          connect: techs.map((techId:Post) => ({ id: Number(techId) })),
         },
         // 一緒に作成する
         needContent: {

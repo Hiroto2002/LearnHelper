@@ -8,7 +8,7 @@ import { Prisma, PrismaClient } from '@prisma/client';
 declare global {
   // allow global `var` declarations
   // eslint-disable-next-line no-var
-  var prisma: any;
+  var prisma: PrismaClient;
 }
 
 function getLogLevel(): (Prisma.LogLevel | Prisma.LogDefinition)[] {
