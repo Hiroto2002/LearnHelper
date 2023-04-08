@@ -72,7 +72,8 @@ export const PostModal = (props: Props) => {
             })}
           />
           <TextInput label="必要なもの" {...register('needContent')} />
-          {errors && <Text>{Object.values(errors).map((value)=>value.message)}</Text>}
+          {errors &&
+            Object.values(errors).map((value, index) => <Text key={index}>{value.message}</Text>)}
           <SubmitButton>投稿</SubmitButton>
         </Form>
       </ModalBody>
