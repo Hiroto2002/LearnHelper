@@ -1,5 +1,5 @@
 import { prisma } from '@/lib/prisma';
-import { Post } from '@prisma/client';
+import { Post } from '@/lib/prisma/client';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 const createPost = async (req: NextApiRequest, res: NextApiResponse) => {

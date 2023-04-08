@@ -1,4 +1,4 @@
-import { Prisma, PrismaClient } from '../../../node_modules/.prisma/client';
+import { Prisma, PrismaClient } from '@prisma/client';
 
 /* eslint @typescript-eslint/no-unsafe-assignment: 0 */
 /* eslint @typescript-eslint/no-unsafe-member-access: 0 */
