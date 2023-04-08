@@ -1,4 +1,4 @@
-import { Post, Prisma, PrismaClient } from '@prisma/client';
+import { Prisma, PrismaClient } from '@prisma/client';
 
 // declare: globalに変数を追加する
 declare global {
