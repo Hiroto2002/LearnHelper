@@ -3,7 +3,7 @@ import { Prisma, PrismaClient } from '@prisma/client';
 // declare: globalに変数を追加する
 declare global {
   // allow global `var` declarations
-  // eslint-disable-next-line no-var
+  // eslint-disable-next-line no-var,no-unsafe-assignment,no-unsafe-member-access,no-unsafe-call
   var prisma: any;
 }
 
