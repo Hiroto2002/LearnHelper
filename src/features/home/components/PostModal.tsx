@@ -7,7 +7,7 @@ import { ModalBody } from '@/components/layouts/modal/ModalBody';
 import { Overlay } from '@/components/layouts/modal/Overlay';
 import React, { BaseSyntheticEvent } from 'react';
 import { UseFormRegister } from 'react-hook-form';
-import { PostInput } from '../types/PostInput';
+import { PostInput } from '../types/Post';
 
 type Props = {
   handleClose: () => void;
@@ -26,10 +26,10 @@ export const PostModal = (props: Props) => {
             1
           </RadioInput>
           <RadioInput {...register('priority')}>2</RadioInput>
-          <CheckBoxInput {...register('tech')} value="2">
-            2
+          <CheckBoxInput {...register('techs')} value="1">
+            1
           </CheckBoxInput>
-          <CheckBoxInput {...register('tech')} value="3">
+          <CheckBoxInput {...register('techs')} value="3">
             3
           </CheckBoxInput>
           <TextInput label="概要" {...register('content')} />

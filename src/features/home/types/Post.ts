@@ -1,7 +1,11 @@
+export type Post = {
+    authorId: number;
+}&PostInput;
+
 export type PostInput = {
     title: string;
     priority: number;
-    tech: number;
+    techs: number[];
     content: string;
     getContent: string;
     needContent: string;
