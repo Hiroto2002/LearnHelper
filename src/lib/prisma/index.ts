@@ -1,9 +1,13 @@
 import { Prisma, PrismaClient } from '@prisma/client';
 
+/* @typescript-eslint/no-unsafe-assignment: 0 */
+/* @typescript-eslint/no-unsafe-member-access: 0 */
+/* @typescript-eslint/no-unsafe-call: 0 */
+
 // declare: globalに変数を追加する
 declare global {
   // allow global `var` declarations
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
+  // eslint-disable-next-line no-var
   var prisma: any;
 }
 
