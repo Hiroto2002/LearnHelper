@@ -6,7 +6,7 @@ import { useModal } from '@/hooks/useModal';
 import { prisma } from '@/lib/prisma';
 import { Styles } from '@/types/styles';
 import { NextPage } from 'next';
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import * as Post from '../../features/home/components/index';
 
@@ -29,6 +29,10 @@ const Home: NextPage = () => {
     reset();
   };
 
+  useEffect(() => {
+    console.log(errors);
+  }, );
+
   return (
     <div style={styles.container}>
       <Post.PostToggleButton handleOpen={handleOpen} />
@@ -38,6 +42,7 @@ const Home: NextPage = () => {
           handleClose={handleClose}
           onSubmit={handleSubmit(onSubmit)}
           register={register}
+          errors={errors}
         />
       )}
     </div>
