@@ -1,10 +1,10 @@
-import { Prisma, PrismaClient } from '@prisma/client';
+import { Post, Prisma, PrismaClient } from '@prisma/client';
 
 // declare: globalに変数を追加する
 declare global {
   // allow global `var` declarations
   // eslint-disable-next-line no-var
-  var prisma: PrismaClient | undefined;
+  var prisma: PrismaClient;
 }
 
 function getLogLevel(): (Prisma.LogLevel | Prisma.LogDefinition)[] {

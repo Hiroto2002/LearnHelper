@@ -53,3 +53,4 @@ model NeedContent {
 
 // マイグレーション:データベースへ変更を記録する
 //npx prisma migrate dev 
+//npm run prisma:generate
