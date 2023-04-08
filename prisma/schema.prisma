@@ -2,7 +2,7 @@
 
 generator client {
   provider = "prisma-client-js"
-  output = "../node_modules/.prisma/client"
+  output = "../../node_modules/.prisma/client"
 }
 
 datasource db {
@@ -54,4 +54,4 @@ model NeedContent {
 
 // マイグレーション:データベースへ変更を記録する
 //npx prisma migrate dev 
-//npm run prisma:generate
+//npm prisma generate
