@@ -9,6 +9,7 @@ import React, { BaseSyntheticEvent } from 'react';
 import { FieldErrors, UseFormRegister } from 'react-hook-form';
 import { PostInput } from '../types/post';
 import { Text } from '@/components/elements/text/Text';
+
 type Props = {
   handleClose: () => void;
   onSubmit: (e?: BaseSyntheticEvent<object, any, any> | undefined) => Promise<void>;
