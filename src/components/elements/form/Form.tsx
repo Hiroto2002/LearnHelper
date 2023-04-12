@@ -1,4 +1,4 @@
-import { PostInput } from '@/features/home/types/Post';
+import { PostInput } from '@/features/home/types/post';
 import { type } from 'os';
 import React, { BaseSyntheticEvent } from 'react';
 import { SubmitHandler } from 'react-hook-form';

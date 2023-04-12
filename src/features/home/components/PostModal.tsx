@@ -7,7 +7,7 @@ import { ModalBody } from '@/components/layouts/modal/ModalBody';
 import { Overlay } from '@/components/layouts/modal/Overlay';
 import React, { BaseSyntheticEvent } from 'react';
 import { FieldErrors, UseFormRegister } from 'react-hook-form';
-import { PostInput } from '../types/Post';
+import { PostInput } from '../types/post';
 import { Text } from '@/components/elements/text/Text';
 type Props = {
   handleClose: () => void;
