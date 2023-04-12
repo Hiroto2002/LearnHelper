@@ -1,5 +1,5 @@
 import useSWR from 'swr';
-import { Post } from '../types/Post';
+import { Post } from '../types/post';
 import axios from 'axios';
 
  const savePost = async (params: Post) => {

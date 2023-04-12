@@ -1,7 +1,4 @@
-import { PostInput } from '@/features/home/types/Post';
-import { type } from 'os';
 import React, { BaseSyntheticEvent } from 'react';
-import { SubmitHandler } from 'react-hook-form';
 import { Text } from '../text/Text';
 
 type Props = {
