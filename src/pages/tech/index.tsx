@@ -1,13 +1,13 @@
 import { BottomNav } from '@/components/layouts/bottomNav/BottomNav';
-import { useSavePost } from '@/features/home/hooks/useSavePost';
-import { PostInput } from '@/features/home/types/post';
+import { useSaveTech } from '@/features/tech/hooks/useSaveTech';
+import { TechInput } from '@/features/tech/types/tech';
 import { useCustomRouter } from '@/hooks/useCustomRouter';
 import { useModal } from '@/hooks/useModal';
 import { Styles } from '@/types/styles';
 import { NextPage } from 'next';
 import React, { useEffect} from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import * as Post from '../../features/home/components/index';
+import * as Tech from '../../features/tech/components/index';
 
 const Home: NextPage = () => {
   const { handlePushRouter, isActive } = useCustomRouter();
@@ -17,14 +17,14 @@ const Home: NextPage = () => {
     reset,
     handleSubmit,
     formState: { errors },
-  } = useForm<PostInput>({
+  } = useForm<TechInput>({
     // mode:初回のバリデーションを行うタイミング
     mode: 'onSubmit',
   });
-  const { save } = useSavePost();
-  const onSubmit: SubmitHandler<PostInput> = async (data) => {
-    const postData = { ...data, authorId: 1 };
-    await save(postData);
+  const { save } = useSaveTech();
+  const onSubmit: SubmitHandler<TechInput> = async (data) => {
+    const techData = { ...data, authorId: 1 };
+    await save(techData);
     reset();
   };
 
@@ -34,10 +34,10 @@ const Home: NextPage = () => {
 
   return (
     <div style={styles.container}>
-      <Post.PostToggleButton handleOpen={handleOpen} />
+      <Tech.TechToggleButton handleOpen={handleOpen} />
       <BottomNav handlePushRouter={handlePushRouter} isActive={isActive} />
       {isOpen && (
-        <Post.PostModal
+        <Tech.TechModal
           handleClose={handleClose}
           onSubmit={handleSubmit(onSubmit)}
           register={register}

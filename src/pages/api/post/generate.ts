@@ -3,7 +3,8 @@ import { prisma } from '@/lib/prisma';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 const createPost = async (req: NextApiRequest, res: NextApiResponse) => {
-  const { title, content, getContent, priority, authorId,needContent,techs } = req.body as Post;
+  const { title, content, getContent, priority, authorId, needContent, techs } = req.body as Post;
+  const tech = typeof techs === 'string' && Number(techs) 
   // const { id } = req.user;
   // return;
   try {
@@ -21,7 +22,11 @@ const createPost = async (req: NextApiRequest, res: NextApiResponse) => {
         },
         // 多対多の関係を作成する
         techs: {
-          connect: techs.map((techId) => ({ id: Number(techId) })),
+          connect:
+          // 一つの場合はそのまま
+            typeof techs === 'string'
+              ? {id:tech}
+              : techs.map((techId) => ({ id: Number(techId) })),
         },
         // 一緒に作成する
         needContent: {

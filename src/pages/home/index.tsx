@@ -24,13 +24,11 @@ const Home: NextPage = () => {
   const { save } = useSavePost();
   const onSubmit: SubmitHandler<PostInput> = async (data) => {
     const postData = { ...data, authorId: 1 };
+    console.log(postData);
     await save(postData);
     reset();
   };
 
-  useEffect(() => {
-    console.log(errors);
-  }, );
 
   return (
     <div style={styles.container}>
