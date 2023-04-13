@@ -4,12 +4,23 @@ import { PostInput } from '@/features/home/types/post';
 import { useCustomRouter } from '@/hooks/useCustomRouter';
 import { useModal } from '@/hooks/useModal';
 import { Styles } from '@/types/styles';
-import { NextPage } from 'next';
-import React, { useEffect} from 'react';
+import { GetServerSideProps, NextPage } from 'next';
+import React, { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import * as Post from '../../features/home/components/index';
+import { fetcher } from 'utils/fetcher';
+// import { UserColumn } from '@/types/user';
+import { SWRConfig } from 'swr';
+import querystring from 'querystring';
+import useSWR from 'swr';
+import { PostColumn } from '@/types/post';
 
-const Home: NextPage = () => {
+type Props={
+  initialData: PostColumn[]
+}
+const Home = ({initialData}:Props) => {
+
+
   const { handlePushRouter, isActive } = useCustomRouter();
   const { isOpen, handleOpen, handleClose } = useModal();
   const {
@@ -24,14 +35,17 @@ const Home: NextPage = () => {
   const { save } = useSavePost();
   const onSubmit: SubmitHandler<PostInput> = async (data) => {
     const postData = { ...data, authorId: 1 };
-    console.log(postData);
+    // console.log(postData);
     await save(postData);
     reset();
   };
 
-
+  useEffect(()=>{
+    console.log(initialData);
+  },[])
   return (
     <div style={styles.container}>
+      <Post.PostList data={initialData}/>
       <Post.PostToggleButton handleOpen={handleOpen} />
       <BottomNav handlePushRouter={handlePushRouter} isActive={isActive} />
       {isOpen && (
@@ -51,5 +65,18 @@ const styles: Styles = {
     height: '100vh',
     width: '100vw',
   },
+};
+
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const userId = 1;
+  const query = querystring.stringify({ userId });
+  const data = await fetcher<PostColumn[]>(`/api/post/getPosts?${query}`);
+  
+  return {
+    props: {
+      initialData: data, // 初期値を返す
+    },
+  };
 };
 export default Home;
