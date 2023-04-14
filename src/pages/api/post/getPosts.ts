@@ -3,7 +3,7 @@ import { prisma } from '@/lib/prisma';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 const getPosts = async (req: NextApiRequest, res: NextApiResponse) => {
-  const { userId } = req.query;
+  const { userId } = req.query as { userId: string };
 
   // return;
   try {
@@ -15,14 +15,11 @@ const getPosts = async (req: NextApiRequest, res: NextApiResponse) => {
         posts: {
           include: {
             techs: true,
+            needContent:true
           },
         },
       },
     });
-
-    if (!post) {
-      throw new Error(`User with ID ${userId} not found.`);
-    }
 
     return res.status(200).json(post.posts);
   } catch (error) {
