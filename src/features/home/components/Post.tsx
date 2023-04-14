@@ -2,7 +2,7 @@ import { PostColumn } from '@/types/post';
 import { Styles } from '@/types/styles';
 import React from 'react';
 import { Text } from '@/components/elements/text/Text';
-import { Tech } from '@/types/tech';
+import { TechColumn } from '@/types/tech';
 
 type Props = {
   data: PostColumn;
@@ -14,7 +14,7 @@ export const Post = (props: Props) => {
     <div style={styles.container}>
       <Text>{title}</Text>
       <Text>{priority}</Text>
-      {techs.map((tech:Tech, index:number) => (
+      {techs.map((tech:TechColumn, index:number) => (
         <Text key={index}>{tech.title}</Text>
       ))}
     </div>
