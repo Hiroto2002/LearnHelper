@@ -69,7 +69,7 @@ const styles: Styles = {
 
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const userId = 1;
+  const userId = '1';
   const query = querystring.stringify({ userId:String(userId) });
   const data = await fetcher<PostColumn[]>(`/api/post/getPosts?${query}`);
   
