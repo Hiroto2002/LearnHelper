@@ -1,4 +1,3 @@
-import { Post } from '@/features/home/types/post';
 import { prisma } from '@/lib/prisma';
 import { NextApiRequest, NextApiResponse } from 'next';
 
