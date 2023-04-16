@@ -1,22 +1,19 @@
-import { PostColumn } from '@/types/post';
+import { TechColumn } from '@/types/tech';
 import { Styles } from '@/types/styles';
 import React from 'react';
 import { Text } from '@/components/elements/text/Text';
-import { TechColumn } from '@/types/tech';
 
 type Props = {
-  data: PostColumn;
+  data: TechColumn;
 };
 
-export const Post = (props: Props) => {
-  const { title, priority, techs } = props.data;
+export const Tech = (props: Props) => {
+  const { title, priority, postCount } = props.data;
   return (
     <div style={styles.container}>
       <Text>{title}</Text>
       <Text>{priority}</Text>
-      {techs.map((tech:TechColumn, index:number) => (
-        <Text key={index}>{tech.title}</Text>
-      ))}
+      <Text>プロジェクトの数：{postCount}</Text>
     </div>
   );
 };

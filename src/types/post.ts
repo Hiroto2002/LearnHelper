@@ -1,4 +1,4 @@
-import { Tech } from "./tech"
+import { TechColumn } from "./tech"
 
 export type PostColumn={
     id        :number  
@@ -8,6 +8,6 @@ export type PostColumn={
     getContent :string
     createdAt : string
     authorId  :number
-    techs : Tech[]
+    techs : TechColumn[]
     needContent: string[]
 }

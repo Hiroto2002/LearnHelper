@@ -1,7 +1,7 @@
 import { prisma } from '@/lib/prisma';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-const getPosts = async (req: NextApiRequest, res: NextApiResponse) => {
+const getTechs = async (req: NextApiRequest, res: NextApiResponse) => {
   const { userId } = req.query as { userId: string };
 
   // return;
@@ -11,19 +11,14 @@ const getPosts = async (req: NextApiRequest, res: NextApiResponse) => {
         id: Number(userId),
       },
       include: {
-        posts: {
-          include: {
-            techs: true,
-            needContent:true
-          },
-        },
+        techs: true,
       },
     });
 
-    return res.status(200).json(post.posts);
+    return res.status(200).json(post.techs);
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: 'Internal Server Error' });
   }
 };
-export default getPosts;
+export default getTechs;

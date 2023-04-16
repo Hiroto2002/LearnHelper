@@ -4,12 +4,21 @@ import { TechInput } from '@/features/tech/types/tech';
 import { useCustomRouter } from '@/hooks/useCustomRouter';
 import { useModal } from '@/hooks/useModal';
 import { Styles } from '@/types/styles';
-import { NextPage } from 'next';
+import { GetServerSideProps, NextPage } from 'next';
 import React, { useEffect} from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import * as Tech from '../../features/tech/components/index';
+import { fetcher } from 'utils/fetcher';
+import querystring from 'querystring';
+import { TechColumn } from '@/types/tech';
 
-const Home: NextPage = () => {
+type Props={
+  initialData: TechColumn[]
+}
+const TechPage = ({initialData}:Props) => {
+  useEffect(()=>{
+    console.log(initialData);
+  },[])
   const { handlePushRouter, isActive } = useCustomRouter();
   const { isOpen, handleOpen, handleClose } = useModal();
   const {
@@ -28,12 +37,9 @@ const Home: NextPage = () => {
     reset();
   };
 
-  useEffect(() => {
-    console.log(errors);
-  }, );
-
   return (
     <div style={styles.container}>
+      <Tech.TechList data={initialData}/>
       <Tech.TechToggleButton handleOpen={handleOpen} />
       <BottomNav handlePushRouter={handlePushRouter} isActive={isActive} />
       {isOpen && (
@@ -54,4 +60,17 @@ const styles: Styles = {
     width: '100vw',
   },
 };
-export default Home;
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const userId = '1';
+  const query = querystring.stringify({ userId: userId?.toString() });
+  const data = await fetcher<TechColumn[]>(`/api/tech/getTechs?${query}`);
+  
+  return {
+    props: {
+      initialData: data, // 初期値を返す
+    },
+  };
+};
+
+export default TechPage;
