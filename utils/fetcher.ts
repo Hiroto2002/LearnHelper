@@ -5,7 +5,7 @@
  * @returns {Promise<T>} API レスポンス
  */
 export const fetcher = async <T>(url: string): Promise<T> => {
-  const parsedUrl = new URL(url, 'http://localhost:3000')
+  const parsedUrl = new URL(url, process.env.NEXT_PUBLIC_SERVER_URL)
   const response = await fetch(parsedUrl.toString())
  return (await response.json()) 
 }
