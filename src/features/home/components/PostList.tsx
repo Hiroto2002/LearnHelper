@@ -10,9 +10,9 @@ export const PostList = (props:Props) => {
   const { data } = props;
   return (
     <div style={styles.container}>
-      {/* {data.map((post:PostColumn) => (
+      {data.map((post:PostColumn) => (
         <Post key={post.id} data={post}/>
-      ))} */}
+      ))}
     </div>
   );
 };
