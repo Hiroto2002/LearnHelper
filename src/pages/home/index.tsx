@@ -71,7 +71,7 @@ const styles: Styles = {
 export const getServerSideProps: GetServerSideProps = async () => {
   const userId = '1';
   const query = querystring.stringify({ userId: userId?.toString() });
-  const data = await fetcher<PostColumn[]>(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/post/getPosts?${query}`);
+  const data = await fetcher<PostColumn[]>(`${process.env.NEXT_PUBLIC_API_ENDPOINT  as string}/api/post/getPosts?${query}`);
   
   return {
     props: {
