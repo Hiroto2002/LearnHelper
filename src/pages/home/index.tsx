@@ -45,7 +45,7 @@ const Home = ({initialData}:Props) => {
   },[])
   return (
     <div style={styles.container}>
-      {/* <Post.PostList data={initialData}/>
+      {/* <Post.PostList data={initialData}/> */}
       <Post.PostToggleButton handleOpen={handleOpen} />
       <BottomNav handlePushRouter={handlePushRouter} isActive={isActive} />
       {isOpen && (
@@ -55,7 +55,7 @@ const Home = ({initialData}:Props) => {
           register={register}
           errors={errors}
         />
-      )} */}
+      )}
     </div>
   );
 };
