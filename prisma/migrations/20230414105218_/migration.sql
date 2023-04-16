@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Tech" ADD COLUMN     "postCount" INTEGER NOT NULL DEFAULT 0;

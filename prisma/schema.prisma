@@ -11,6 +11,7 @@ datasource db {
 
 // model:tableのこと
 // @id:主キー, @default(autoincrement()):自動採番
+//@@map(name: "users"):テーブル名とモデル名を切り離して指定
 
 model User {
   id    Int     @id @default(autoincrement())
@@ -42,6 +43,7 @@ model Tech {
   author    User     @relation(fields: [authorId], references: [id])
   authorId  Int
   posts Post[] 
+  postCount Int  @default(0)
 }
 
 model NeedContent {
@@ -54,4 +56,4 @@ model NeedContent {
 
 // マイグレーション:データベースへ変更を記録する
 //npx prisma migrate dev 
-//npm prisma generate
+//npx prisma generate
