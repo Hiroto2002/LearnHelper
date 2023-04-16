@@ -64,7 +64,7 @@ const styles: Styles = {
 export const getServerSideProps: GetServerSideProps = async () => {
   const userId = '1';
   const query = querystring.stringify({ userId: userId?.toString() });
-  const data = await fetcher<TechColumn[]>(`/api/tech/getTechs?${query}`);
+  const data = await fetcher<TechColumn[]>(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/tech/getTechs?${query}`);
   
   return {
     props: {

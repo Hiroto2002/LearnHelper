@@ -12,11 +12,11 @@ export const Post = (props: Props) => {
   const { title, priority, techs } = props.data;
   return (
     <div style={styles.container}>
-      {/* <Text>{title}</Text>
+      <Text>{title}</Text>
       <Text>{priority}</Text>
       {techs.map((tech:TechColumn, index:number) => (
         <Text key={index}>{tech.title}</Text>
-      ))} */}
+      ))}
     </div>
   );
 };
