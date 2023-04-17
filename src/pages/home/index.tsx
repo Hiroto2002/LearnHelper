@@ -15,12 +15,7 @@ import querystring from 'querystring';
 import useSWR from 'swr';
 import { PostColumn } from '@/types/post';
 
-type Props={
-  initialData: PostColumn[]
-}
-const Home = ({initialData}:Props) => {
-
-
+const Home:NextPage = () => {
   const { handlePushRouter, isActive } = useCustomRouter();
   const { isOpen, handleOpen, handleClose } = useModal();
   const {
@@ -40,12 +35,13 @@ const Home = ({initialData}:Props) => {
     reset();
   };
 
-  useEffect(()=>{
-    console.log(initialData);
-  },[])
+  const { data } = useSWR<PostColumn[]>(`/api/post/getPosts?userId=1`, fetcher) ;
+  
+  if(!data) return <div>loading...</div>
+
   return (
     <div style={styles.container}>
-      <Post.PostList data={initialData}/>
+      <Post.PostList data={data!} />
       <Post.PostToggleButton handleOpen={handleOpen} />
       <BottomNav handlePushRouter={handlePushRouter} isActive={isActive} />
       {isOpen && (
@@ -65,19 +61,6 @@ const styles: Styles = {
     height: '100vh',
     width: '100vw',
   },
-};
-
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  const userId = '1';
-  const query = querystring.stringify({ userId: userId?.toString() });
-  const data = await fetcher<PostColumn[]>(`${process.env.NEXT_PUBLIC_API_ENDPOINT  as string}/api/post/getPosts?${query}`);
-  
-  return {
-    props: {
-      initialData: data, // 初期値を返す
-    },
-  };
 };
 
 export default Home;

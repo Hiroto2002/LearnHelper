@@ -11,14 +11,9 @@ import * as Tech from '../../features/tech/components/index';
 import { fetcher } from 'utils/fetcher';
 import querystring from 'querystring';
 import { TechColumn } from '@/types/tech';
+import useSWR from 'swr';
 
-type Props={
-  initialData: TechColumn[]
-}
-const TechPage = ({initialData}:Props) => {
-  useEffect(()=>{
-    console.log(initialData);
-  },[])
+const TechPage = () => {
   const { handlePushRouter, isActive } = useCustomRouter();
   const { isOpen, handleOpen, handleClose } = useModal();
   const {
@@ -36,10 +31,12 @@ const TechPage = ({initialData}:Props) => {
     await save(techData);
     reset();
   };
+  const { data } = useSWR<TechColumn[]>(`/api/tech/getTechs?userId=1`, fetcher) ;
+  if(!data) return <div>loading...</div>
 
   return (
     <div style={styles.container}>
-      <Tech.TechList data={initialData}/>
+      <Tech.TechList data={data!}/>
       <Tech.TechToggleButton handleOpen={handleOpen} />
       <BottomNav handlePushRouter={handlePushRouter} isActive={isActive} />
       {isOpen && (
