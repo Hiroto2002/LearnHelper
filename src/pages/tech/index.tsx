@@ -36,7 +36,7 @@ const TechPage = () => {
 
   return (
     <div style={styles.container}>
-      <Tech.TechList data={data!}/>
+      <Tech.TechList data={data}/>
       <Tech.TechToggleButton handleOpen={handleOpen} />
       <BottomNav handlePushRouter={handlePushRouter} isActive={isActive} />
       {isOpen && (

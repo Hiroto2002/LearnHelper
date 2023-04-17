@@ -41,7 +41,7 @@ const Home:NextPage = () => {
 
   return (
     <div style={styles.container}>
-      <Post.PostList data={data!} />
+      <Post.PostList data={data} />
       <Post.PostToggleButton handleOpen={handleOpen} />
       <BottomNav handlePushRouter={handlePushRouter} isActive={isActive} />
       {isOpen && (
