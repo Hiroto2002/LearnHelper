@@ -14,7 +14,7 @@ export const getPosts = async (userId: number):Promise<PostColumn[]> => {
       },
     },
   });
-  const serializedData:{posts:Promise<PostColumn[]>} = JSON.parse(JSON.stringify(post, (key, value) =>
+  const serializedData:{posts:Promise<PostColumn[]>} = JSON.parse(JSON.stringify(post, (key, value: Promise<PostColumn> ) =>
     key === "createdAt" && value instanceof Date ? value.toISOString() : value
   ));
   return serializedData.posts;

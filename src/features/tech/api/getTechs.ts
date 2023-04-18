@@ -12,7 +12,7 @@ const getTechs = async (userId: number):Promise<TechColumn[]> => {
   });
 
   const serializedData:{techs:Promise<TechColumn[]>} = JSON.parse(
-    JSON.stringify(tech, (key, value) => {
+    JSON.stringify(tech, (key, value: Promise<TechColumn>) => {
       if (key === 'createdAt' && value instanceof Date) {
         return value.toISOString();
       }
