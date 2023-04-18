@@ -14,8 +14,14 @@ import { SWRConfig } from 'swr';
 import querystring from 'querystring';
 import useSWR from 'swr';
 import { PostColumn } from '@/types/post';
+import { getPosts } from '@/features/home/api/getPosts';
 
-const Home:NextPage = () => {
+type Props={
+  initialData: PostColumn[]
+}
+const Home = ({initialData}:Props) => {
+
+
   const { handlePushRouter, isActive } = useCustomRouter();
   const { isOpen, handleOpen, handleClose } = useModal();
   const {
@@ -35,13 +41,12 @@ const Home:NextPage = () => {
     reset();
   };
 
-  const { data } = useSWR<PostColumn[]>(`/api/post/getPosts?userId=1`, fetcher) ;
-  
-  if(!data) return <div>loading...</div>
-
+  useEffect(()=>{
+    console.log(initialData);
+  },[])
   return (
     <div style={styles.container}>
-      <Post.PostList data={data} />
+      <Post.PostList data={initialData}/>
       <Post.PostToggleButton handleOpen={handleOpen} />
       <BottomNav handlePushRouter={handlePushRouter} isActive={isActive} />
       {isOpen && (
@@ -61,6 +66,17 @@ const styles: Styles = {
     height: '100vh',
     width: '100vw',
   },
+};
+
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const userId = 1;
+  const data = await getPosts(userId);  
+  return {
+    props: {
+      initialData: data, // 初期値を返す
+    },
+  };
 };
 
 export default Home;

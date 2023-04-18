@@ -12,6 +12,7 @@ import { fetcher } from 'utils/fetcher';
 import querystring from 'querystring';
 import { TechColumn } from '@/types/tech';
 import useSWR from 'swr';
+import getTechs from '@/features/tech/api/getTechs';
 
 const TechPage = () => {
   const { handlePushRouter, isActive } = useCustomRouter();
@@ -59,9 +60,8 @@ const styles: Styles = {
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const userId = '1';
-  const query = querystring.stringify({ userId: userId?.toString() });
-  const data = await fetcher<TechColumn[]>(`${process.env.NEXT_PUBLIC_API_ENDPOINT as string}/api/tech/getTechs?${query}`);
+  const userId = 1;
+  const data = await getTechs(userId);
   
   return {
     props: {
