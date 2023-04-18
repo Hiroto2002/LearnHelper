@@ -1,7 +1,7 @@
 import { PostColumn } from "@/types/post";
 
-export const getPosts = async (userId: number):Promise<PostColumn> => {
-  const post = await prisma.user.findUnique({
+export const getPosts = async (userId: number):Promise<PostColumn[]> => {
+  const post:{posts:Promise<PostColumn[]>}  = await prisma.user.findUnique({
     where: {
       id: userId
     },
@@ -14,7 +14,7 @@ export const getPosts = async (userId: number):Promise<PostColumn> => {
       },
     },
   });
-  const serializedData = JSON.parse(JSON.stringify(post, (key, value) =>
+  const serializedData:{posts:Promise<PostColumn[]>} = JSON.parse(JSON.stringify(post, (key, value) =>
     key === "createdAt" && value instanceof Date ? value.toISOString() : value
   ));
   return serializedData.posts;

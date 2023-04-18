@@ -1,8 +1,8 @@
 import { prisma } from '@/lib/prisma';
 import { TechColumn } from '@/types/tech';
 
-const getTechs = async (userId: number):Promise<TechColumn> => {
-  const tech = await prisma.user.findUnique({
+const getTechs = async (userId: number):Promise<TechColumn[]> => {
+  const tech:{techs:Promise<TechColumn[]>} = await prisma.user.findUnique({
     where: {
       id: Number(userId),
     },
@@ -11,7 +11,7 @@ const getTechs = async (userId: number):Promise<TechColumn> => {
     },
   });
 
-  const serializedData = JSON.parse(
+  const serializedData:{techs:Promise<TechColumn[]>} = JSON.parse(
     JSON.stringify(tech, (key, value) => {
       if (key === 'createdAt' && value instanceof Date) {
         return value.toISOString();
