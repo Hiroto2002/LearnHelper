@@ -1,4 +1,6 @@
-export const getPosts = async (userId: number) => {
+import { PostColumn } from "@/types/post";
+
+export const getPosts = async (userId: number):Promise<PostColumn> => {
   const post = await prisma.user.findUnique({
     where: {
       id: userId

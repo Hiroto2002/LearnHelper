@@ -1,6 +1,7 @@
 import { prisma } from '@/lib/prisma';
+import { TechColumn } from '@/types/tech';
 
-const getTechs = async (userId: number) => {
+const getTechs = async (userId: number):Promise<TechColumn> => {
   const tech = await prisma.user.findUnique({
     where: {
       id: Number(userId),
