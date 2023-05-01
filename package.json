@@ -11,7 +11,7 @@
     "lint": "next lint --dir src",
     "lint:fix": "next lint --dir src --fix",
     "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json}",
-    "vercel-build": "npx prisma generate && npx prisma migrate && next build"
+    "vercel-build": "npx prisma generate && npx prisma migrate deploy && next build"
   },
   "dependencies": {
     "@supabase/auth-helpers-nextjs": "^0.5.6",
