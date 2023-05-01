@@ -13,7 +13,9 @@ export const TechToggleButton = (props:Props) => {
 const styles:Styles = {
     container:{
         position:"fixed",
-        right:0,
-        bottom:"100px"
+        right:"10px",
+        bottom:"30px",
+        backgroundColor:"#ffa500",
+        color:"#efefef",
     }
 }
