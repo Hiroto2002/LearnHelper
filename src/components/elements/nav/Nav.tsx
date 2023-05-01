@@ -2,11 +2,11 @@ import React from "react";
 
 type Props={
     children:React.ReactNode
-    styles:React.CSSProperties
+    style:React.CSSProperties
 }
 
 export const Nav = (props:Props) => {
-    const {children,styles} = props;
-  return <nav style={styles}>{children}</nav>;
+    const {children,style} = props;
+  return <nav style={style}>{children}</nav>;
 };
 

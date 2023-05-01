@@ -1,5 +1,19 @@
-import { ComponentProps } from 'react';
+import { Styles } from '@/types/styles';
+import { CSSProperties, ComponentProps } from 'react';
 
-export const Button = (props: ComponentProps<'button'>) => {
-  return <button {...props} />;
+type Props = {
+  style?: CSSProperties;
+} & ComponentProps<'button'>;
+
+export const Button = (props: Props) => {
+  const { style } = props;
+  return <button {...props} style={{ ...style, ...styles.button }} />;
+};
+
+const styles: Styles = {
+  button: {
+    border: 'none',
+    outline: 'none',
+    cursor: 'pointer',
+  },
 };

@@ -1,4 +1,4 @@
-import { BottomNav } from '@/components/layouts/bottomNav/BottomNav';
+import { Header } from '@/components/layouts/header/Header';
 import { useSavePost } from '@/features/home/hooks/useSavePost';
 import { PostInput } from '@/features/home/types/post';
 import { useCustomRouter } from '@/hooks/useCustomRouter';
@@ -20,7 +20,7 @@ type Props = {
   initialData: PostColumn[];
 };
 
-const Home = ({initialData}:Props) => {
+const Home = ({ initialData }: Props) => {
   const { handlePushRouter, isActive } = useCustomRouter();
   const { isOpen, handleOpen, handleClose } = useModal();
   const {
@@ -40,14 +40,14 @@ const Home = ({initialData}:Props) => {
     reset();
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     console.log(initialData);
-  },[])
+  }, []);
   return (
     <div style={styles.container}>
-      <Post.PostList data={initialData}/>
+      <Post.PostList data={initialData} />
       <Post.PostToggleButton handleOpen={handleOpen} />
-      <BottomNav handlePushRouter={handlePushRouter} isActive={isActive} />
+      <Header handlePushRouter={handlePushRouter} isActive={isActive} />
       {isOpen && (
         <Post.PostModal
           handleClose={handleClose}
@@ -64,13 +64,13 @@ const styles: Styles = {
   container: {
     height: '100vh',
     width: '100vw',
+    overflowX: 'hidden',
   },
 };
 
-
 export const getServerSideProps: GetServerSideProps = async () => {
   const userId = 1;
-  const data = await getPosts(userId);  
+  const data = await getPosts(userId);
   return {
     props: {
       initialData: data, // 初期値を返す

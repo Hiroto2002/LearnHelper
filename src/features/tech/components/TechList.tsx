@@ -2,6 +2,7 @@ import { Styles } from '@/types/styles';
 import React from 'react';
 import { Tech } from './Tech';
 import { TechColumn } from '@/types/tech';
+import { List } from '@/components/elements/list/List';
 
 type Props={
   data: TechColumn[]
@@ -9,16 +10,11 @@ type Props={
 export const TechList = (props:Props) => {
   const { data } = props;
   return (
-    <div style={styles.container}>
+    <List >
       {data.map((tech:TechColumn) => (
         <Tech key={tech.id} data={tech}/>
       ))}
-    </div>
+    </List>
   );
 };
 
-const styles: Styles = {
-  container: {
-    height: '100vh',
-  },
-};
