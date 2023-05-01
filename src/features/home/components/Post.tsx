@@ -1,8 +1,9 @@
 import { PostColumn } from '@/types/post';
-import { Styles } from '@/types/styles';
 import React from 'react';
-import { Text } from '@/components/elements/text/Text';
-import { TechColumn } from '@/types/tech';
+import { RecordTitle } from '@/components/layouts/Record/RecordTitle';
+import { RecordContainer } from '@/components/layouts/Record/RecordContainer';
+import { RecordTechs } from '@/components/layouts/Record/RecordTechs';
+import { RecordPriority } from '@/components/layouts/Record/RecordPriority';
 
 type Props = {
   data: PostColumn;
@@ -11,21 +12,10 @@ type Props = {
 export const Post = (props: Props) => {
   const { title, priority, techs } = props.data;
   return (
-    <div style={styles.container}>
-      <Text>{title}</Text>
-      <Text>{priority}</Text>
-      {techs.map((tech:TechColumn, index:number) => (
-        <Text key={index}>{tech.title}</Text>
-      ))}
-    </div>
+    <RecordContainer>
+      <RecordTitle>{title}</RecordTitle>
+      <RecordTechs techs={techs}/>
+      <RecordPriority priority={priority}/>
+    </RecordContainer>
   );
-};
-
-const styles: Styles = {
-  container: {
-    height: '100px',
-    width: '100vw',
-    backgroundColor: '#ddd',
-    margin: ' 0 0 10px 0',
-  },
 };

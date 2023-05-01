@@ -2,7 +2,7 @@ import { Styles } from '@/types/styles';
 import React from 'react';
 import { Tech } from './Tech';
 import { TechColumn } from '@/types/tech';
-import { List } from '@/components/elements/list/list';
+import { List } from '@/components/elements/list/List';
 
 type Props={
   data: TechColumn[]
