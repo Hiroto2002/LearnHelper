@@ -64,7 +64,7 @@ const styles: Styles = {
   container: {
     height: '100vh',
     width: '100vw',
-    overflowX: 'hidden'
+    overflowX: 'hidden',
   },
 };
 
