@@ -1,11 +1,11 @@
-import { BottomNav } from '@/components/layouts/bottomNav/BottomNav';
+import { Header } from '@/components/layouts/header/Header';
 import { useSaveTech } from '@/features/tech/hooks/useSaveTech';
 import { TechInput } from '@/features/tech/types/tech';
 import { useCustomRouter } from '@/hooks/useCustomRouter';
 import { useModal } from '@/hooks/useModal';
 import { Styles } from '@/types/styles';
 import { GetServerSideProps, NextPage } from 'next';
-import React, { useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import * as Tech from '../../features/tech/components/index';
 import { fetcher } from 'utils/fetcher';
@@ -18,7 +18,7 @@ type Props = {
   initialData: TechColumn[];
 };
 
-const TechPage = ({initialData}:Props) => {
+const TechPage = ({ initialData }: Props) => {
   const { handlePushRouter, isActive } = useCustomRouter();
   const { isOpen, handleOpen, handleClose } = useModal();
   const {
@@ -39,9 +39,9 @@ const TechPage = ({initialData}:Props) => {
 
   return (
     <div style={styles.container}>
-      <Tech.TechList data={initialData}/>
+      <Tech.TechList data={initialData} />
       <Tech.TechToggleButton handleOpen={handleOpen} />
-      <BottomNav handlePushRouter={handlePushRouter} isActive={isActive} />
+      <Header handlePushRouter={handlePushRouter} isActive={isActive} />
       {isOpen && (
         <Tech.TechModal
           handleClose={handleClose}
@@ -58,13 +58,15 @@ const styles: Styles = {
   container: {
     height: '100vh',
     width: '100vw',
+    overflowX: 'hidden',
+    
   },
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const userId = 1;
   const data = await getTechs(userId);
-  
+
   return {
     props: {
       initialData: data, // 初期値を返す
