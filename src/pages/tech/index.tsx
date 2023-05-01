@@ -14,7 +14,11 @@ import { TechColumn } from '@/types/tech';
 import useSWR from 'swr';
 import getTechs from '@/features/tech/api/getTechs';
 
-const TechPage = () => {
+type Props = {
+  initialData: TechColumn[];
+};
+
+const TechPage = ({initialData}:Props) => {
   const { handlePushRouter, isActive } = useCustomRouter();
   const { isOpen, handleOpen, handleClose } = useModal();
   const {
@@ -32,12 +36,10 @@ const TechPage = () => {
     await save(techData);
     reset();
   };
-  const { data } = useSWR<TechColumn[]>(`/api/tech/getTechs?userId=1`, fetcher) ;
-  if(!data) return <div>loading...</div>
 
   return (
     <div style={styles.container}>
-      <Tech.TechList data={data}/>
+      <Tech.TechList data={initialData}/>
       <Tech.TechToggleButton handleOpen={handleOpen} />
       <BottomNav handlePushRouter={handlePushRouter} isActive={isActive} />
       {isOpen && (

@@ -16,12 +16,11 @@ import useSWR from 'swr';
 import { PostColumn } from '@/types/post';
 import { getPosts } from '@/features/home/api/getPosts';
 
-type Props={
-  initialData: PostColumn[]
-}
+type Props = {
+  initialData: PostColumn[];
+};
+
 const Home = ({initialData}:Props) => {
-
-
   const { handlePushRouter, isActive } = useCustomRouter();
   const { isOpen, handleOpen, handleClose } = useModal();
   const {
