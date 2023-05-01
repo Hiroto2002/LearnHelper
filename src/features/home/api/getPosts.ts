@@ -1,4 +1,5 @@
 import { PostColumn } from "@/types/post";
+import { prisma } from "@/lib/prisma";
 
 export const getPosts = async (userId: number):Promise<PostColumn[]> => {
   const post:{posts:Promise<PostColumn[]>}  = await prisma.user.findUnique({
