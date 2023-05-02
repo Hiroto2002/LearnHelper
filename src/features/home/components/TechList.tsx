@@ -31,6 +31,7 @@ export const TechList = (props: Props) => {
 
 const styles:Styles = {
     container:{
-        ...POST_MODAL.container
+        ...POST_MODAL.container,
+        display:"flex",
     },
 };

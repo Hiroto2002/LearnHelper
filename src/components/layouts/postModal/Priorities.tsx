@@ -34,6 +34,6 @@ export const Priorities = (props:Props) => {
 const styles:Styles = {
     container:{
       ...POST_MODAL.container,
-      color:"#666"
+      color:"#666",
     },
   }

@@ -11,9 +11,10 @@ export const List = (props:Props) => {
 
 const styles: Styles = {
     container: {
-      margin: '80px 0 0 0',
+      padding: '80px 0 0 0',
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
+      backgroundColor: '#efefef',
     },
   };
