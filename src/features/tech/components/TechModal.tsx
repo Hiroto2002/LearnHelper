@@ -8,6 +8,7 @@ import React, { BaseSyntheticEvent } from 'react';
 import { FieldErrors, UseFormRegister } from 'react-hook-form';
 import { TechInput } from '../types/tech';
 import { Text } from '@/components/elements/text/Text';
+import { Priorities } from '@/components/layouts/postModal/Priorities';
 
 type Props = {
   handleClose: () => void;
@@ -24,29 +25,18 @@ export const TechModal = (props: Props) => {
       <ModalBody>
         <Form onSubmit={onSubmit}>
           <TextInput
-            label="タイトル"
+            placeholder="タイトル"
             {...register('title', {
               required: 'タイトルは必須です',
             })}
           />
-          <RadioInput
-            {...register('priority', {
-              required: '優先度は必須です',
+          <Priorities register={register} />
+          <TextInput
+            placeholder="なぜ必要か"
+            {...register('whyWant', {
+              required: '必要な理由は必須です',
             })}
-            value="1"
-          >
-            1
-          </RadioInput>
-          <RadioInput
-            {...register('priority', {
-              required: '優先度は必須です',
-            })}
-          >
-            2
-          </RadioInput>
-          <TextInput label="なぜ必要か" {...register('whyWant',{
-             required: '必要な理由は必須です',
-          })} />
+          />
           {errors &&
             Object.values(errors).map((value, index) => <Text key={index}>{value.message}</Text>)}
           <SubmitButton>投稿</SubmitButton>
