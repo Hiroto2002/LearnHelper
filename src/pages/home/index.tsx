@@ -8,19 +8,17 @@ import { GetServerSideProps, NextPage } from 'next';
 import React, { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import * as Post from '../../features/home/components/index';
-import { fetcher } from 'utils/fetcher';
-// import { UserColumn } from '@/types/user';
-import { SWRConfig } from 'swr';
-import querystring from 'querystring';
-import useSWR from 'swr';
 import { PostColumn } from '@/types/post';
 import { getPosts } from '@/features/home/api/getPosts';
+import { TechColumn } from '@/types/tech';
+import getTechs from '@/features/tech/api/getTechs';
 
 type Props = {
   initialData: PostColumn[];
+  techData: TechColumn[];
 };
 
-const Home = ({ initialData }: Props) => {
+const Home = ({ initialData,techData }: Props) => {
   const { handlePushRouter, isActive } = useCustomRouter();
   const { isOpen, handleOpen, handleClose } = useModal();
   const {
@@ -39,10 +37,9 @@ const Home = ({ initialData }: Props) => {
     await save(postData);
     reset();
   };
+  console.log(techData);
+  
 
-  useEffect(() => {
-    console.log(initialData);
-  }, []);
   return (
     <div style={styles.container}>
       <Post.PostList data={initialData} />
@@ -54,6 +51,7 @@ const Home = ({ initialData }: Props) => {
           onSubmit={handleSubmit(onSubmit)}
           register={register}
           errors={errors}
+          techData={techData}
         />
       )}
     </div>
@@ -71,9 +69,11 @@ const styles: Styles = {
 export const getServerSideProps: GetServerSideProps = async () => {
   const userId = 1;
   const data = await getPosts(userId);
+  const techData = await getTechs(userId);
   return {
     props: {
       initialData: data, // 初期値を返す
+      techData: techData,
     },
   };
 };

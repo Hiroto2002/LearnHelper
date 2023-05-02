@@ -16,8 +16,8 @@ export const Tech = (props: Props) => {
   return (
     <RecordContainer>
       <RecordTitle>{title}</RecordTitle>
-      <RecordPostCount postCount={postCount}/>
-      <RecordPriority priority={priority}/>
+      <RecordPostCount postCount={postCount} />
+      <RecordPriority priority={priority} />
     </RecordContainer>
   );
 };
