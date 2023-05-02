@@ -1,9 +1,9 @@
+import { RecordContainer } from '@/components/layouts/record/RecordContainer';
+import { RecordPriority } from '@/components/layouts/record/RecordPriority';
+import { RecordTechs } from '@/components/layouts/record/RecordTechs';
+import { RecordTitle } from '@/components/layouts/record/RecordTitle';
 import { PostColumn } from '@/types/post';
 import React from 'react';
-import { RecordTitle } from '@/components/layouts/record/RecordTitle';
-import { RecordContainer } from '@/components/layouts/record/RecordContainer';
-import { RecordTechs } from '@/components/layouts/record/RecordTechs';
-import { RecordPriority } from '@/components/layouts/record/RecordPriority';
 
 type Props = {
   data: PostColumn;
