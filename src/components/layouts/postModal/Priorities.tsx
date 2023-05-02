@@ -1,8 +1,7 @@
 import { RadioInput } from '@/components/elements/input/RadioInput';
 import { Styles } from '@/types/styles';
 import React from 'react';
-import { FieldValues, UseFormRegister } from 'react-hook-form';
-import { Color } from 'textalive-app-api';
+import {  UseFormRegister } from 'react-hook-form';
 import { POST_MODAL } from 'theme/postModal';
 import { Text } from '@/components/elements/text/Text';
 

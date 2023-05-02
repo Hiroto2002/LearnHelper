@@ -1,6 +1,5 @@
 import { SubmitButton } from '@/components/elements/button/SubmitButton';
 import { Form } from '@/components/elements/form/Form';
-import { CheckBoxInput } from '@/components/elements/input/CheckBoxInput';
 import { TextInput } from '@/components/elements/input/TextInput';
 import { ModalBody } from '@/components/layouts/modal/ModalBody';
 import { Overlay } from '@/components/layouts/modal/Overlay';
