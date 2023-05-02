@@ -20,5 +20,5 @@ const style:CSSProperties = {
     cursor:'pointer',
     fontSize:'15px',
     margin:'20px 0',
-    width:'400px',
+    width:'30vw',
 }

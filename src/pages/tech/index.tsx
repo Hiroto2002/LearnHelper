@@ -59,7 +59,6 @@ const styles: Styles = {
     height: '100vh',
     width: '100vw',
     overflowX: 'hidden',
-    
   },
 };
 
