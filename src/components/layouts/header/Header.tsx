@@ -26,7 +26,7 @@ export const Header = (props: Props) => {
       <Text style={styles.logo}>Learn</Text>
       <Nav style={styles.nav}>
         {BUTTON.map((button, index) => (
-            <Button style={styles.button}  onClick={() => handlePushRouter(button.path)}>
+            <Button style={styles.button} key={index}  onClick={() => handlePushRouter(button.path)}>
               {button.name}
               {isActive(button.path) && (
                 <Image
