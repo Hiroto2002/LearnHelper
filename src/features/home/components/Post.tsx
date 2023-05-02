@@ -1,7 +1,7 @@
-import { RecordContainer } from '@/components/layouts/record/RecordContainer';
-import { RecordPriority } from '@/components/layouts/record/RecordPriority';
-import { RecordTechs } from '@/components/layouts/record/RecordTechs';
-import { RecordTitle } from '@/components/layouts/record/RecordTitle';
+import { RecordContainer } from '@/components/layouts/Record/RecordContainer';
+import { RecordPriority } from '@/components/layouts/Record/RecordPriority';
+import { RecordTechs } from '@/components/layouts/Record/RecordTechs';
+import { RecordTitle } from '@/components/layouts/Record/RecordTitle';
 import { PostColumn } from '@/types/post';
 import React from 'react';
 
