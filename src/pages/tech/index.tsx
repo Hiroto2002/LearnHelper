@@ -19,7 +19,6 @@ type Props = {
 };
 
 const TechPage = ({ initialData }: Props) => {
-  const { handlePushRouter, isActive } = useCustomRouter();
   const { isOpen, handleOpen, handleClose } = useModal();
   const {
     register,
@@ -41,7 +40,7 @@ const TechPage = ({ initialData }: Props) => {
     <div style={styles.container}>
       <Tech.TechList data={initialData} />
       <Tech.TechToggleButton handleOpen={handleOpen} />
-      <Header handlePushRouter={handlePushRouter} isActive={isActive} />
+      <Header />
       {isOpen && (
         <Tech.TechModal
           handleClose={handleClose}

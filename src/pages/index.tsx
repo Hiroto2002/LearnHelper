@@ -5,7 +5,7 @@ import { useEffect } from "react";
 const Login:NextPage=()=> {
   const {handlePushRouter} = useCustomRouter()
   useEffect(()=>{
-    handlePushRouter('/home')
+    handlePushRouter('/report')
   },[])
   return (
     <>
