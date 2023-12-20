@@ -1,14 +1,8 @@
 import { Prisma, PrismaClient } from '@prisma/client';
 
-/* @typescript-eslint/no-unsafe-assignment: 0 */
-/* @typescript-eslint/no-unsafe-member-access: 0 */
-/* @typescript-eslint/no-unsafe-call: 0 */
-
 // declare: globalに変数を追加する
 declare global {
-  // allow global `var` declarations
-  // eslint-disable-next-line no-var
-  var prisma: any;
+  var prisma: PrismaClient | undefined;
 }
 
 function getLogLevel(): (Prisma.LogLevel | Prisma.LogDefinition)[] {

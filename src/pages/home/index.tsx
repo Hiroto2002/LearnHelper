@@ -36,7 +36,6 @@ const Home = ({ initialData,techData }: Props) => {
     await save(postData);
     reset();
   };
-  console.log(techData);
   
 
   return (
