@@ -20,6 +20,7 @@ model User {
   createdAt DateTime @default(now())
   posts Post[]
   techs Tech[]
+  reports Report[]
 }
 
 model Post {
@@ -44,6 +45,28 @@ model Tech {
   authorId  Int
   posts Post[] 
   postCount Int  @default(0)
+}
+
+model Report {
+  id        Int      @id @default(autoincrement())
+  title     String
+  memo   String?
+  createdAt DateTime @default(now())
+  author    User     @relation(fields: [authorId], references: [id])
+  authorId  Int
+  todos Todo[]
+}
+
+model Todo {
+  id        Int      @id @default(autoincrement())
+  title      String
+  description String
+  status      Boolean
+  startDate   DateTime
+  endDate     DateTime?
+  author Report @relation(fields: [authorId], references: [id])
+  authorId  Int
+  createdAt DateTime @default(now())
 }
 
 model NeedContent {

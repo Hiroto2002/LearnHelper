@@ -19,7 +19,6 @@ type Props = {
 };
 
 const Home = ({ initialData,techData }: Props) => {
-  const { handlePushRouter, isActive } = useCustomRouter();
   const { isOpen, handleOpen, handleClose } = useModal();
   const {
     register,
@@ -37,14 +36,13 @@ const Home = ({ initialData,techData }: Props) => {
     await save(postData);
     reset();
   };
-  console.log(techData);
   
 
   return (
     <div style={styles.container}>
       <Post.PostList data={initialData} />
       <Post.PostToggleButton handleOpen={handleOpen} />
-      <Header handlePushRouter={handlePushRouter} isActive={isActive} />
+      <Header />
       {isOpen && (
         <Post.PostModal
           handleClose={handleClose}

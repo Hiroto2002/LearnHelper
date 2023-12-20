@@ -4,13 +4,10 @@ import React from 'react';
 import { Nav } from '../../elements/nav/Nav';
 import { Text } from '../../elements/text/Text';
 import Image from 'next/image';
+import { useCustomRouter } from '@/hooks/useCustomRouter';
 
-type Props = {
-  handlePushRouter: (path: string) => void;
-  isActive: (path: string) => boolean;
-};
-export const Header = (props: Props) => {
-  const { handlePushRouter, isActive } = props;
+export const Header = () => {
+  const { handlePushRouter, isActive } = useCustomRouter()
   const BUTTON = [
     {
       name: 'ホーム',
@@ -20,6 +17,10 @@ export const Header = (props: Props) => {
       name: '技術',
       path: '/tech',
     },
+    {
+      name: 'レポート',
+      path: '/report',
+    }
   ];
   return (
     <div style={styles.container}>
