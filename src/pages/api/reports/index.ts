@@ -11,7 +11,7 @@ const fetchAllReport = async (req: NextApiRequest, res: NextApiResponse) => {
         }
     });
    
-    return res.status(200).json({data:post});
+    return res.status(200).json(post);
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: 'Internal Server Error' });
