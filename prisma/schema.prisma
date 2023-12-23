@@ -61,8 +61,8 @@ model Todo {
   id        Int      @id @default(autoincrement())
   title      String
   description String
-  status      Boolean
-  startDate   DateTime
+  isEnd      Boolean
+  startDate   DateTime?
   endDate     DateTime?
   author Report @relation(fields: [authorId], references: [id])
   authorId  Int
