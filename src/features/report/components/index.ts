@@ -1,4 +1,4 @@
 import { PostToggleButton } from './PostToggleButton';
-import { PostModal } from './PostModal';
+import { ReportModal } from './ReportModal';
 import { RecordList } from '@/features/report/components/List';
-export { PostToggleButton, PostModal, RecordList };
+export { PostToggleButton, ReportModal, RecordList };
