@@ -89,7 +89,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
       },
     });
     const serializedReport = JSON.parse(
-      JSON.stringify(report, (key, value) =>
+      JSON.stringify(report, (key, value:Date) =>
         key === 'createdAt' && value instanceof Date ? value.toISOString() : value,
       ),
     );
