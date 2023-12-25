@@ -20,5 +20,8 @@ const styles: Styles = {
     height: '100vh',
     backgroundColor: 'rgba(0,0,0,0.5)',
     zIndex: 100,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center"
   },
 };

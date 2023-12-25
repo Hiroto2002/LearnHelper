@@ -12,14 +12,14 @@ export const ModalBody = (props: Props) => {
 const styles:Styles={
     modalBody:{
         backgroundColor:'#eee',
-        width:'60%',
-        height:'90%',
         padding:'10px',
         borderRadius:'10px',
-        margin:'0 auto',
-        position:'absolute',
         zIndex:101,
-        top:'5%',
-        left:'20%',
+        transform: "translateY(-50%)",
+        position: "fixed",
+        top: "50%",
+        maxWidth: "80%",
+        left:"10%",
+        width:"80%"
     }
 }

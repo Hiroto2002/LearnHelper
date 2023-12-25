@@ -1,4 +1,5 @@
 import { PostToggleButton } from './PostToggleButton';
 import { ReportModal } from './ReportModal';
-import { RecordList } from '@/features/report/components/List';
-export { PostToggleButton, ReportModal, RecordList };
+import { Record } from '@/features/report/components/Record';
+import { EditModal} from '@/features/report/components/EditModal';
+export { PostToggleButton, ReportModal, Record, EditModal };
