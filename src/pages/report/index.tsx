@@ -5,23 +5,29 @@ import React, { useEffect } from 'react';
 import * as Report from '@/features/report/components';
 import { useModal } from '@/hooks/useModal';
 import { useFieldArray, useForm } from 'react-hook-form';
-import { ReportInput } from '@/features/report/types/ReportInput';
+import { ReportInput } from '@/features/report/types/ReportDomain';
 
 const report = () => {
-  const { report, fetchAllReport } = useReport();
-  const { isOpen, handleOpen, handleClose, } = useModal();
+  const { report, fetchAllReport, createReport } = useReport();
+  const { isOpen, handleOpen, handleClose } = useModal();
   const { register, control, handleSubmit } = useForm<ReportInput>();
-  const {fields, append, remove} = useFieldArray({ control, name: 'todos' });
+  const { fields, append, remove } = useFieldArray({ control, name: 'todos' });
 
+  const onSubmit = (inputData: ReportInput) => {
+    const data = {
+      ...inputData,
 
-  const onSubmit = (data: ReportInput) => {
-    try{
-        console.log(data);
+      todos: inputData.todos.map((todo) => ({
+        ...todo,
+        isDone: false,
+      })),
+    };
+    try {
+      createReport(data);
 
-
-        handleClose();
+      handleClose();
     } catch (error) {
-        console.log(error);
+      console.log(error);
     }
   };
 
@@ -43,7 +49,7 @@ const report = () => {
           onSubmit={handleSubmit(onSubmit)}
           fields={fields}
           append={append}
-          remove={remove}          
+          remove={remove}
         />
       )}
       <Report.PostToggleButton handleOpen={handleOpen} />

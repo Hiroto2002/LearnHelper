@@ -1,6 +1,7 @@
 import { SubmitButton } from '@/components/elements/button/SubmitButton';
 import { Form } from '@/components/elements/form/Form';
 import { TextInput } from '@/components/elements/input/TextInput';
+import { Text } from '@/components/elements/text/Text';
 import { ModalBody } from '@/components/layouts/modal/ModalBody';
 import { Overlay } from '@/components/layouts/modal/Overlay';
 import React, { BaseSyntheticEvent } from 'react';
@@ -10,7 +11,7 @@ import {
   UseFieldArrayRemove,
   UseFormRegister,
 } from 'react-hook-form';
-import { ReportInput } from '@/features/report/types/ReportInput';
+import { ReportInput } from '@/features/report/types/ReportDomain';
 
 type Props = {
   handleClose: () => void;
@@ -43,6 +44,9 @@ export const ReportModal = (props: Props) => {
           />
           {fields.map((field, index) => (
             <div key={field.id}>
+              <Text>
+                Todo {index + 1}
+              </Text>
               <TextInput
                 placeholder="タイトル"
                 {...register(`todos.${index}.title`, {

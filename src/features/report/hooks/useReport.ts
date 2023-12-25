@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { ReportCreate, ReportDomain } from '../types/ReportDomain';
+import { ReportDomain, ReportInput } from '@/features/report/types/ReportDomain';
 import axios from 'axios';
+import { Report } from '@prisma/client';
 
 export const useReport = () => {
   const [report, setReport] = useState<ReportDomain[]>();
@@ -20,8 +21,8 @@ export const useReport = () => {
    * @param params
    * @returns
    */
-  const createReport = async (params: ReportCreate) => {
-    await axios.post<ReportCreate>('/api/reports/', params).then((res) => {
+  const createReport = async (params: ReportInput) => {
+    await axios.post<ReportDomain>('/api/reports/', params).then((res) => {
       setReport((prev) => {
         if (prev) {
           return [...prev, res.data];
@@ -31,5 +32,5 @@ export const useReport = () => {
     });
   };
 
-  return { report, fetchAllReport };
+  return { report, fetchAllReport, createReport };
 };

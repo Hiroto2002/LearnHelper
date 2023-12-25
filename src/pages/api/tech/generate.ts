@@ -3,7 +3,7 @@ import { prisma } from '@/lib/prisma';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 const createTech = async (req: NextApiRequest, res: NextApiResponse) => {
-  const { title, priority, authorId,whyWant } = req.body as Tech;
+  const { title, priority, userId, whyWant } = req.body as Tech;
   // const { id } = req.user;
   // return;
   try {
@@ -12,9 +12,9 @@ const createTech = async (req: NextApiRequest, res: NextApiResponse) => {
         title: title,
         priority: Number(priority),
         // userとの関係を作成する
-        author: {
+        user: {
           connect: {
-            id: authorId,
+            id: userId,
           },
         },
         whyWant: whyWant,

@@ -31,7 +31,7 @@ const TechPage = ({ initialData }: Props) => {
   });
   const { save } = useSaveTech();
   const onSubmit: SubmitHandler<TechInput> = async (data) => {
-    const techData = { ...data, authorId: 1 };
+    const techData = { ...data, userId: 1 };
     await save(techData);
     reset();
   };
