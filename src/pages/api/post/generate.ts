@@ -3,35 +3,26 @@ import { prisma } from '@/lib/prisma';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 const createPost = async (req: NextApiRequest, res: NextApiResponse) => {
-  const { title, content, getContent, priority, authorId, needContent, techs } = req.body as Post;
-  const tech = typeof techs === 'string' && Number(techs) 
-  // const { id } = req.user;
-  // return;
   try {
+    const { title, content, getContent, priority, userId, needContent, techs } = req.body as Post;
+
+
+    // userIdの検証
+    if (typeof userId !== 'string') {
+      return res.status(400).json({ message: 'Invalid userId value' });
+    }
+
+
+
     const post = await prisma.post.create({
       data: {
-        title: title,
-        content: content,
-        getContent: getContent,
-        priority: Number(priority),
-        // userとの関係を作成する
-        author: {
-          connect: {
-            id: authorId,
-          },
-        },
-        // 多対多の関係を作成する
-        techs: {
-          connect:
-          // 一つの場合はそのまま
-            typeof techs === 'string'
-              ? {id:tech}
-              : techs.map((techId) => ({ id: Number(techId) })),
-        },
-        // 一緒に作成する
-        needContent: {
-          create: [{ title: needContent }],
-        },
+        title,
+        content,
+        getContent,
+        priority: priority,
+        user: { connect: { id: userId } },
+        techs: { connect: techs.map((tech) => ({ id: tech })) },
+        needContent: { create: [{ title: needContent }] },
       },
     });
 
@@ -41,4 +32,5 @@ const createPost = async (req: NextApiRequest, res: NextApiResponse) => {
     return res.status(500).json({ message: 'Internal Server Error' });
   }
 };
+
 export default createPost;

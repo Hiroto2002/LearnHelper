@@ -1,5 +1,5 @@
 export type Tech = {
-    authorId: number;
+    userId: number;
 }&TechInput;
 
 export type TechInput = {

@@ -1,5 +1,5 @@
 export type Post = {
-    authorId: number;
+    userId: number;
 }&PostInput;
 
 export type PostInput = {
