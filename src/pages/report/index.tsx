@@ -9,6 +9,10 @@ import { ReportInput } from '@/features/report/types/ReportDomain';
 import { Flex } from '@/components/elements/box/Flex';
 
 const report = () => {
+  const now = new Date();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+  const formattedDate = `${month}/${day}`;
   const { report, fetchAllReport, createReport, deleteReport } = useReport();
   const { isOpen, handleOpen, handleClose } = useModal();
   const {
@@ -16,7 +20,11 @@ const report = () => {
     handleOpen: handleEditOpen,
     handleClose: handleEditClose,
   } = useModal();
-  const { register, control, handleSubmit } = useForm<ReportInput>();
+  const { register, control, handleSubmit } = useForm<ReportInput>({
+    defaultValues: {
+      title: formattedDate,
+    },
+  });
   const { fields, append, remove } = useFieldArray({ control, name: 'todos' });
   const [currentEditId, setCurrentEditId] = useState<number | null>(null);
 
@@ -27,7 +35,7 @@ const report = () => {
 
   const handleClickDelete = () => {
     if (currentEditId) {
-        // todo 削除処理のエラーハンドリングの確認
+      // todo 削除処理のエラーハンドリングの確認
       try {
         deleteReport(currentEditId);
         handleEditClose();
