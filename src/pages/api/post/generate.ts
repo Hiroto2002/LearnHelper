@@ -4,12 +4,12 @@ import { NextApiRequest, NextApiResponse } from 'next';
 
 const createPost = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const { title, content, getContent, priority, authorId, needContent, techs } = req.body as Post;
+    const { title, content, getContent, priority, userId, needContent, techs } = req.body as Post;
 
 
-    // authorIdの検証
-    if (typeof authorId !== 'string') {
-      return res.status(400).json({ message: 'Invalid authorId value' });
+    // userIdの検証
+    if (typeof userId !== 'string') {
+      return res.status(400).json({ message: 'Invalid userId value' });
     }
 
 
@@ -20,7 +20,7 @@ const createPost = async (req: NextApiRequest, res: NextApiResponse) => {
         content,
         getContent,
         priority: priority,
-        author: { connect: { id: authorId } },
+        user: { connect: { id: userId } },
         techs: { connect: techs.map((tech) => ({ id: tech })) },
         needContent: { create: [{ title: needContent }] },
       },
