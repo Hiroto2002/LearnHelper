@@ -50,8 +50,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
           return { report, todo };
         });
-        console.log(result);
-        res.status(200).json({
+        return res.status(200).json({
           id: result.report.id,
           title: result.report.title,
           createdAt: result.report.createdAt,
