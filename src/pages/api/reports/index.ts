@@ -5,6 +5,8 @@ import { NextApiRequest, NextApiResponse } from 'next';
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   // todo: ユーザーIDを取得する
   const userId = 1;
+  // console.log('------------');
+  // console.log(req.method);
 
   switch (req.method) {
     case 'GET':
@@ -49,17 +51,30 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
           return { report, todo };
         });
         console.log(result);
-        res
-          .status(200)
-          .json({
-            id: result.report.id,
-            title: result.report.title,
-            createdAt: result.report.createdAt,
-          });
+        res.status(200).json({
+          id: result.report.id,
+          title: result.report.title,
+          createdAt: result.report.createdAt,
+        });
       } catch (error) {
         console.error(error);
         return res.status(500).json({ message: 'Internal Server Error' });
       }
+    case 'DELETE':
+      try {
+        const { id } = req.body;
+        await prisma.report.delete({
+          where: {
+            id: id,
+          },
+        });
+        return res.status(200).json({ message: '削除しました' });
+      } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: 'Internal Server Error' });
+      }
+    default:
+      return res.status(405).json({ message: 'Method Not Allowed' });
   }
 };
 export default handler;
