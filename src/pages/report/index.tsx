@@ -1,17 +1,49 @@
 import { Header } from '@/components/layouts/header/Header';
 import { useReport } from '@/features/report/hooks/useReport';
 import { Styles } from '@/types/styles';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as Report from '@/features/report/components';
 import { useModal } from '@/hooks/useModal';
-import { useFieldArray, useForm } from 'react-hook-form';
+import { set, useFieldArray, useForm } from 'react-hook-form';
 import { ReportInput } from '@/features/report/types/ReportDomain';
+import { Flex } from '@/components/elements/box/Flex';
 
 const report = () => {
-  const { report, fetchAllReport, createReport } = useReport();
+  const now = new Date();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+  const formattedDate = `${month}/${day}`;
+  const { report, fetchAllReport, createReport, deleteReport } = useReport();
   const { isOpen, handleOpen, handleClose } = useModal();
-  const { register, control, handleSubmit } = useForm<ReportInput>();
+  const {
+    isOpen: isEditOpen,
+    handleOpen: handleEditOpen,
+    handleClose: handleEditClose,
+  } = useModal();
+  const { register, control, handleSubmit } = useForm<ReportInput>({
+    defaultValues: {
+      title: formattedDate,
+    },
+  });
   const { fields, append, remove } = useFieldArray({ control, name: 'todos' });
+  const [currentEditId, setCurrentEditId] = useState<number | null>(null);
+
+  const handleEditClick = (id: number) => {
+    handleEditOpen();
+    setCurrentEditId(id);
+  };
+
+  const handleClickDelete = () => {
+    if (currentEditId) {
+      // todo 削除処理のエラーハンドリングの確認
+      try {
+        deleteReport(currentEditId);
+        handleEditClose();
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
 
   const onSubmit = (inputData: ReportInput) => {
     const data = {
@@ -39,9 +71,15 @@ const report = () => {
   return (
     <>
       <Header />
-      <div style={styles.container}>
-        <Report.RecordList data={report} />
-      </div>
+      <Flex style={styles.container} gap={30} direction="column">
+        {report.map((report) => (
+          <Report.Record
+            key={report.id}
+            data={report}
+            handleEditClick={() => handleEditClick(report.id)}
+          />
+        ))}
+      </Flex>
       {isOpen && (
         <Report.ReportModal
           register={register}
@@ -53,6 +91,10 @@ const report = () => {
         />
       )}
       <Report.PostToggleButton handleOpen={handleOpen} />
+
+      {isEditOpen && (
+        <Report.EditModal handleClose={handleEditClose} handleDelete={handleClickDelete} />
+      )}
     </>
   );
 };
@@ -60,6 +102,9 @@ const report = () => {
 const styles: Styles = {
   container: {
     width: '100vw',
+    margin: '100px 0 0 0 ',
+    background: '#eee',
+    padding: '20px',
   },
 };
 

@@ -64,7 +64,7 @@ model Todo {
   isEnd      Boolean
   startDate   DateTime?
   endDate     DateTime?
-  report Report @relation(fields: [reportId], references: [id])
+  report Report @relation(fields: [reportId], references: [id],onDelete: Cascade)
   reportId  Int
   createdAt DateTime @default(now())
 }

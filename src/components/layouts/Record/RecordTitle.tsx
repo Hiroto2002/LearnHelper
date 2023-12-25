@@ -12,5 +12,5 @@ export const RecordTitle = (props:Props) => {
 const styles:CSSProperties = {
     fontSize: '25px',
     fontWeight: 'bold',
-    margin: '10px 50px',
+    padding: '40px 0',
 }

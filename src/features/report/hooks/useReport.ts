@@ -32,5 +32,33 @@ export const useReport = () => {
     });
   };
 
-  return { report, fetchAllReport, createReport };
+  /**
+   * レポートを更新する
+   * @param params
+   * @returns
+   */
+    const updateReport = async (params: Report) => {
+        await axios.put<ReportDomain>('/api/reports/', params).then((res) => {
+            setReport((prev) => {
+                if (prev) {
+                    return [...prev, res.data];
+                }
+                return [res.data];
+            });
+        });
+    };
+
+    /**
+     * レポートを削除する
+     * @param params
+     * @returns
+     */
+    const deleteReport = async (id:number) => {
+        await axios.delete('/api/reports/',{data:{id:id}}).then((res) => {
+            setReport((prev) => prev?.filter((report) => report.id !== id));
+        });
+    };
+
+
+  return { report, fetchAllReport, createReport, updateReport, deleteReport };
 };

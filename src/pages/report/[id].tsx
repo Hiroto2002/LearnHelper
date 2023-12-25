@@ -7,6 +7,8 @@ import { Styles } from '@/types/styles';
 import { GetServerSidePropsContext } from 'next';
 import React from 'react';
 import { prisma } from '@/lib/prisma';
+import { useCustomRouter } from '@/hooks/useCustomRouter';
+import { Button } from '@/components/elements/button/Button';
 
 type Props = {
   report: ReportDomainDetail;
@@ -14,6 +16,7 @@ type Props = {
 
 const Detail = (props: Props) => {
   const { report } = props;
+  const {handleBackRouter} = useCustomRouter()
   if (!report) return <div>loading...</div>;
 
   const dateString = new Date(report.createdAt).toLocaleDateString();
@@ -21,6 +24,9 @@ const Detail = (props: Props) => {
     <>
       <Header />
       <Flex direction="column" style={styles.container} gap={20}>
+
+        <Button onClick={handleBackRouter}>戻る</Button>
+        {/* title */}
         <Flex direction="column" gap={3}>
           <Text style={styles.title}>{report.title}</Text>
           <Text style={styles.date}>{dateString}</Text>

@@ -12,6 +12,9 @@ import {
   UseFormRegister,
 } from 'react-hook-form';
 import { ReportInput } from '@/features/report/types/ReportDomain';
+import { Flex } from '@/components/elements/box/Flex';
+import { Button } from '@/components/elements/button/Button';
+import { Styles } from '@/types/styles';
 
 type Props = {
   handleClose: () => void;
@@ -28,49 +31,71 @@ export const ReportModal = (props: Props) => {
     <>
       <Overlay onClick={handleClose} />
       <ModalBody>
-        <Form onSubmit={onSubmit}>
-          <TextInput
-            placeholder="タイトル"
-            {...register('title', {
-              required: 'タイトルは必須です',
-            })}
-          />
+        <div style={styles.formContainer}>
+          <Form onSubmit={onSubmit}>
+            <TextInput
+              placeholder="タイトル"
+              {...register('title', {
+                required: 'タイトルは必須です',
+              })}
+            />
 
-          <TextInput
-            placeholder="メモ"
-            {...register('memo', {
-              required: 'メモは必須です',
-            })}
-          />
-          {fields.map((field, index) => (
-            <div key={field.id}>
-              <Text>
-                Todo {index + 1}
-              </Text>
-              <TextInput
-                placeholder="タイトル"
-                {...register(`todos.${index}.title`, {
-                  required: 'タイトルは必須です',
-                })}
-              />
-              <TextInput
-                placeholder="説明"
-                {...register(`todos.${index}.description`, {
-                  required: '説明は必須です',
-                })}
-              />
-              <button type="button" onClick={() => remove(index)}>
-                Delete
-              </button>
+            <TextInput
+              placeholder="メモ"
+              {...register('memo', {
+                required: 'メモは必須です',
+              })}
+            />
+            <div style={styles.todoContainer}>
+              {fields.map((field, index) => (
+                <Flex direction="column" key={field.id} gap={20}>
+                  <Text>Todo {index + 1}</Text>
+                  <TextInput
+                    placeholder="タイトル"
+                    {...register(`todos.${index}.title`, {
+                      required: 'タイトルは必須です',
+                    })}
+                  />
+                  <TextInput
+                    placeholder="説明"
+                    {...register(`todos.${index}.description`, {
+                      required: '説明は必須です',
+                    })}
+                  />
+                  <Button onClick={() => remove(index)} style={styles.deleteButton}>
+                    Delete
+                  </Button>
+                </Flex>
+              ))}
             </div>
-          ))}
 
-          <button type="button" onClick={() => append({ title: '', description: '' })}>
-            追加
-          </button>
-          <SubmitButton>投稿</SubmitButton>
-        </Form>
+            <button type="button" onClick={() => append({ title: '', description: '' })}>
+              追加
+            </button>
+            <SubmitButton>投稿</SubmitButton>
+          </Form>
+        </div>
       </ModalBody>
     </>
   );
+};
+
+const styles: Styles = {
+  formContainer: {
+    maxHeight: '80vh',
+    overflowY: 'scroll',
+  },
+  todoContainer: {
+    margin: '20px 0',
+  },
+  deleteButton: {
+    width: '100px',
+    height: '30px',
+    backgroundColor: '#cc4433',
+    color: '#fff',
+    borderRadius: '5px',
+    border: 'none',
+    cursor: 'pointer',
+    margin: '20px auto',
+  },
 };
