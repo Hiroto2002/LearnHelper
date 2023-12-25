@@ -1,13 +1,12 @@
 import { Flex } from '@/components/elements/box/Flex';
-import { List } from '@/components/elements/list/List';
 import { Text } from '@/components/elements/text/Text';
-import { RecordContainer } from '@/components/layouts/Record/RecordContainer';
 import { Header } from '@/components/layouts/header/Header';
 import { TodoRecord } from '@/features/report/components/detail/Todo';
 import { ReportDomainDetail } from '@/features/report/types/ReportDomain';
 import { Styles } from '@/types/styles';
 import { GetServerSidePropsContext } from 'next';
 import React from 'react';
+import { prisma } from '@/lib/prisma';
 
 type Props = {
   report: ReportDomainDetail;
