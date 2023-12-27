@@ -4,17 +4,28 @@ import { Text } from '@/components/elements/text/Text';
 import { Flex } from '@/components/elements/box/Flex';
 import { Button } from '@/components/elements/button/Button';
 
-export const TodoRecord = (props: Todo) => {
-  const { createdAt, startDate, endDate, description, isEnd, title, id } = props;
+type Props = Todo & {
+  onClickStart: (id: number) => Promise<void>;
+  onClickEnd: (id: number) => Promise<void>;
+};
 
+export const TodoRecord = (props: Props) => {
+  const { createdAt, startDate, endDate, description, isEnd, title, id, onClickStart,onClickEnd } = props;
+  const options: Intl.DateTimeFormatOptions = {
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    timeZone: 'Asia/Tokyo',
+  };
   const dateString = new Date(createdAt).toLocaleDateString();
-  const startDateString = startDate && new Date(startDate).toLocaleDateString();
-  const endDateString = endDate && new Date(endDate).toLocaleDateString();
+  const startDateString = startDate && new Date(startDate).toLocaleString('ja-JP', options);
+  const endDateString = endDate && new Date(endDate).toLocaleString('ja-JP', options);
 
   return (
     <Flex
       direction="column"
-      style={{ ...styles.container, backgroundColor: isEnd ? '#aaffaa' : '' }}
+      style={{ ...styles.container, backgroundColor: isEnd ? '' : '#aaffaa' }}
     >
       <Flex gap={10} justifyContent="space-between">
         {/* titleと日付 */}
@@ -26,13 +37,19 @@ export const TodoRecord = (props: Todo) => {
           {startDate ? (
             <Text style={styles.date}>開始：{startDateString}</Text>
           ) : (
-            <Button>開始</Button>
+            <Button onClick={() => onClickStart(id)}>開始</Button>
           )}
-          {endDate ? <Text style={styles.date}>終了：{endDateString}</Text> : <Button>終了</Button>}
+
+          {startDate &&
+            (endDate ? (
+              <Text style={styles.date}>終了：{endDateString}</Text>
+            ) : (
+              <Button onClick={() => onClickEnd(id)}>終了</Button>
+            ))}
         </Flex>
       </Flex>
       <Text style={styles.desc}>{description}</Text>
-      <Text style={styles.title}>{status}</Text>
+      {/* <Text style={styles.title}>{}</Text> */}
     </Flex>
   );
 };

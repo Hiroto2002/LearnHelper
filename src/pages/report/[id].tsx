@@ -1,7 +1,7 @@
 import { Flex } from '@/components/elements/box/Flex';
 import { Text } from '@/components/elements/text/Text';
 import { Header } from '@/components/layouts/header/Header';
-import { TodoRecord } from '@/features/report/components/detail/Todo';
+import { TodoRecord } from '@/features/report/components/detail/TodoRecord';
 import { ReportDomainDetail } from '@/features/report/types/ReportDomain';
 import { Styles } from '@/types/styles';
 import { GetServerSidePropsContext } from 'next';
@@ -9,22 +9,37 @@ import React from 'react';
 import { prisma } from '@/lib/prisma';
 import { useCustomRouter } from '@/hooks/useCustomRouter';
 import { Button } from '@/components/elements/button/Button';
+import { useTodo } from '@/features/report/hooks/detail/useTodo';
+import { useReportDetail } from '@/features/report/hooks/detail/useReportDetail';
+import { Todo } from '@prisma/client';
 
 type Props = {
-  report: ReportDomainDetail;
+  initReport: ReportDomainDetail;
 };
 
 const Detail = (props: Props) => {
-  const { report } = props;
-  const {handleBackRouter} = useCustomRouter()
+  const { initReport } = props;
+  const { handleBackRouter } = useCustomRouter();
+  const { report, handleSetReport } = useReportDetail(initReport);
+  const { setStartTime,setEndTime } = useTodo();
   if (!report) return <div>loading...</div>;
+
+  // 既存のreportのtodoを更新(DBとstore)
+  const handleSetReportTodo = async(id:number,updateTodo:(id:number)=>Promise<Todo|undefined>) => {
+    const todo = await updateTodo(id);
+    if (!todo) return;
+    const newReport = {
+      ...report,
+      todos: report.todos.map((t) => (t.id === todo.id ? todo : t)),
+    };
+    handleSetReport(newReport);
+  };
 
   const dateString = new Date(report.createdAt).toLocaleDateString();
   return (
     <>
       <Header />
       <Flex direction="column" style={styles.container} gap={20}>
-
         <Button onClick={handleBackRouter}>戻る</Button>
         {/* title */}
         <Flex direction="column" gap={3}>
@@ -39,7 +54,12 @@ const Detail = (props: Props) => {
           <Text style={styles.subtitle}>Todo</Text>
           <Flex direction="column" gap={30}>
             {report.todos.map((todo) => (
-              <TodoRecord key={todo.id} {...todo} />
+              <TodoRecord
+                key={todo.id}
+                {...todo}
+                onClickStart={(id:number)=>handleSetReportTodo(id,setStartTime)}
+                onClickEnd={(id:number)=>handleSetReportTodo(id,setEndTime)}
+              />
             ))}
           </Flex>
         </Flex>
@@ -94,13 +114,13 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
       },
     });
     const serializedReport = JSON.parse(
-      JSON.stringify(report, (key, value:Date) =>
+      JSON.stringify(report, (key, value: Date) =>
         key === 'createdAt' && value instanceof Date ? value.toISOString() : value,
       ),
     );
     return {
       props: {
-        report: serializedReport,
+        initReport: serializedReport,
       },
     };
   } catch (e) {
