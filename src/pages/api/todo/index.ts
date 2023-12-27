@@ -61,23 +61,23 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         console.error(error);
         return res.status(500).json({ message: 'Internal Server Error' });
       }
-    case 'PUT':
-      const { id, now } = req.body;
+    // case 'PUT':
+    //   const { id, now } = req.body;
 
-      try {
-        // const todo = await prisma.todo.update({
-        //   data: {
-        //     startDate: now,
-        //   },
-        //   where: {
-        //     id: id,
-        //   },
-        // });
-        return res.status(200).json({ message: '更新しました' });
-      } catch (error) {
-        console.error(error);
-        return res.status(500).json({ message: 'Internal Server Error' });
-      }
+    //   try {
+    //     const todo = await prisma.todo.update({
+    //       data: {
+    //         startDate: now,
+    //       },
+    //       where: {
+    //         id: id,
+    //       },
+    //     });
+    //     return res.status(200).json({ message: '更新しました' });
+    //   } catch (error) {
+    //     console.error(error);
+    //     return res.status(500).json({ message: 'Internal Server Error' });
+    //   }
 
     case 'DELETE':
       // todo todoに置き換え
